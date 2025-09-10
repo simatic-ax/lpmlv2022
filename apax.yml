@@ -1,10 +1,10 @@
 # General information
-name: "lpmlv2022"
+name: "@simatic-ax/lpmlv2022"
 version: 0.0.0-placeholder
 author: Siemens AG
 
 # Description will be displayed in the apax extension
-description: <add your description here, which will be shown in the apax extension>
+description: Mode and State manager according to OMAC PackML.
 type: lib
 
 #URL to the repository
@@ -28,9 +28,13 @@ publicKeys:
   "@simatic-ax": "3792a7e926775425ccdd29ceed8c368c3008b5b33d7d5550b3cb1f58093e1dff"
 
 # Dependencies
+dependencies:
+  "@ax/simatic-1500-clocks": 10.0.6
+  "@ax/system-datetime": 10.0.24
+  "@ax/system-conversion": 10.0.24
+
 devDependencies:
-  '@ax/sdk': ^2504.0.0
-  "@simatic-ax/snippetscollection": ^1.0.0
+  "@ax/sdk": ^2504.1.1
 
 # Project variables
 variables:
@@ -43,8 +47,7 @@ files:
   - 'LICENSE.md'
   - 'docs'
   - 'bin'
-  - 'snippets'
 
 # Catalog to be intalled
 catalogs:
-  "@ax/simatic-ax": ^2504.0.0
+  "@ax/simatic-ax": ^2504.1.1
