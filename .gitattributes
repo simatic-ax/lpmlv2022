@@ -1,0 +1,2 @@
+﻿# disable linguist detection for ST files
+*.st linguist-detectable=false
