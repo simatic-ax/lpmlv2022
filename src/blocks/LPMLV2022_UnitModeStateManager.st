@@ -11,10 +11,10 @@ NAMESPACE Simatic.Ax.LPMLV2022
 /// Requirements: S7-1500 FW 2.6
 /// Functionality: Machine and Unit States according to ANSI/ISA-TR88.00.02-2022
 ///                (if the default settings are active at 'holdCmdCfg' and 'completeCmdCfg')
-///================================================================================	
+///================================================================================
 FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
    {S7.extern = ReadWrite}
-   VAR_INPUT 
+   VAR_INPUT
       UnitMode : DInt := LPMLV2022_ModeConstants#MODE_INVALID;   // Requested unit mode
       UnitModeChangeRequest : Bool;   // TRUE: Request unit mode
       CntrlCmd : DInt := LPMLV2022_CommandConstants#CMD_UNDEFINED;   // Request control command
@@ -26,7 +26,7 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
    END_VAR
 
    {S7.extern = ReadOnly}
-   VAR_OUTPUT 
+   VAR_OUTPUT
       UnitModeCurrent  : DInt := LPMLV2022_ModeConstants#MODE_MANUAL;   // Current unit mode
       StateCurrent  : DInt := LPMLV2022_StateConstants#STATE_STOPPED;   // Current state
       StateRequested  : DInt := LPMLV2022_StateConstants#STATE_STOPPED;   // Requested state
@@ -39,7 +39,7 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
       diagnostics  : LPMLV2022_typeDiagnostics;   // Diagnostics information of FB
    END_VAR
 
-   VAR 
+   VAR
       statConfiguration  : LPMLV2022_typeConfiguration := (
 		DisabledStatesCfg := [32(DWORD#16#0)],
 		ModeTransitionCfg := [DWORD#0, 31(DWORD#16#00000214)]);   // FB configuration
@@ -66,7 +66,7 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
       statCntrlCmdNotAllowed  : Bool;   // Static value for output 'cntrlCmdNotAllowed'
    END_VAR
 
-   VAR_TEMP 
+   VAR_TEMP
       tempDWord1 : DWord;
       tempDWord2 : DWord;
       tempCntrlCmd : DInt;   // Temporary control command
@@ -79,7 +79,7 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	  tempYear, tempMonth, tempDay, tempWeekday, tempHour, tempMinute, tempSecond, tempMillisecond, tempMicrosecond, tempNanosecond : INT;
    END_VAR
 
-   VAR CONSTANT 
+   VAR CONSTANT
       MSG_NO_MESSAGE : Byte := BYTE#16#00;   // Initial value
       MSG_MODE_CHANGED_SUCCESSFULLY : Byte := BYTE#16#01;   // Unit mode changed successfully
       MSG_STATE_CHANGED_SUCCESSFULLY : Byte := BYTE#16#02;   // State changed successfully
@@ -96,31 +96,31 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
    END_VAR
 
 
-	
 
-	
-	
+
+
+
 	IF NOT statCmdChangeRequest AND statCmdChangeRequestOld THEN // Falling edge CmdChangeRequest
 	  statCntrlCmdOld := LPMLV2022_CommandConstants#CMD_UNDEFINED;
 	END_IF;
 	statCmdChangeRequestOld := statCmdChangeRequest;
-	
+
 	IF NOT statUnitModeChangeRequest AND statUnitModeChangeRequestOld THEN // Falling edge UnitModeChangeRequest
 	  statUnitModeOld := LPMLV2022_ModeConstants#MODE_INVALID;
 	END_IF;
 	statUnitModeChangeRequestOld := statUnitModeChangeRequest;
-	
+
 	diagnostics.bufferIndex := statDiagnosticsBufferIndex;
 	tempDiagnosticsBufferIndexSC  := -1;
 	tempDiagnosticsBufferIndexCmd := -1;
-	
+
 	StateCurrent    := statStateInternal;
 	UnitModeCurrent := statUnitModeCurrentInternal;
-	
+
 	IF statFirstCycle THEN // Initialize values in first cycle
 	  statConfiguration := config; // Copy configuration from input
 	  statConfiguration.EnabledModesCfg.%X3 := TRUE; // Unit mode Manual is mandatory
-	
+
 	//--------------------------------------------------------------------------------------------------
 	// Unit mode manager
 	//--------------------------------------------------------------------------------------------------
@@ -130,11 +130,11 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	  //------------------------------------------------
 	  statUnitMode := UnitMode;
 	  tempCntrlCmd := CntrlCmd;
-	  
+
 	  // Set change requests from input
 	  statUnitModeChangeRequest := UnitModeChangeRequest;
 	  statCmdChangeRequest      := CmdChangeRequest;
-	  
+
 	  //------------------------------------------------
 	  //Message handling for mode manager: head part
 	  //------------------------------------------------
@@ -173,7 +173,7 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	    diagnostics.buffer[statDiagnosticsBufferIndex].CntrlCmd := TO_SINT(tempCntrlCmd);
 	    diagnostics.buffer[statDiagnosticsBufferIndex].SC := SC;
 	    diagnostics.buffer[statDiagnosticsBufferIndex].message := MSG_NO_MESSAGE;
-	    
+
 	    IF statUnitMode < LPMLV2022_ModeConstants#MODE_INVALID OR statUnitMode > LPMLV2022_ModeConstants#MODE_USER_28 THEN
 	      diagnostics.buffer[statDiagnosticsBufferIndex].message := MSG_MODE_NOT_DEFINED;
 	      statUnitModeChangeNotAllowed := TRUE;
@@ -183,7 +183,7 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	    END_IF;
 	  END_IF; // End: message handling for mode manager: head part
 	END_IF;
-	
+
 	//------------------------------------------------
 	// Unit mode machine
 	//------------------------------------------------
@@ -196,19 +196,19 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	  ) OR
 	  statFirstCycle
 	THEN
-	  // Is a mode transition in the current state allowed? 
+	  // Is a mode transition in the current state allowed?
 	  // -> Check mode transition config. The corresponding state bit for statStateInternal must be present in ModeTransitionCfg[statUnitMode] AND ModeTransitionCfg[statUnitModeCurrentInternal]
 	  tempDWord1 := SHR(statConfiguration.ModeTransitionCfg[statUnitMode], TO_UINT(statStateInternal)); // Shift the bit, whose bit position corresponds to the value of statStateInternal to bit position zero (tempDWord1.%X0)
 	  tempDWord2 := SHR(statConfiguration.ModeTransitionCfg[statUnitModeCurrentInternal], TO_UINT(statStateInternal)); // Shift the bit, whose bit position corresponds to the value of statStateInternal to bit position zero (tempDWord2.%X0)
-	
+
 	  IF (tempDWord1.%X0 = FALSE OR tempDWord2.%X0 = FALSE) AND NOT statFirstCycle THEN // Mode transition is not allowed
 	    diagnostics.buffer[statDiagnosticsBufferIndex].message := MSG_MODE_TRANSITION_NOT_ALLOWED;
 	    statUnitModeChangeNotAllowed := TRUE;
-	
+
 	  ELSE // (tempDWord1.%X0 = TRUE AND tempDWord2.%X0 = TRUE) -> The state bit of the current state is set in both mode transition config DWords, i.e. mode transition is allowed
 	    // Requested unit mode enabled? -> Is the corresponding bit set in the EnabledModesCfg DWord?
 	    tempDWord1 := SHR(statConfiguration.EnabledModesCfg, TO_UINT(statUnitMode)); // Shift the bit, whose bit position corresponds to the value of statUnitMode to bit position zero (tempDWord1.%X0)
-	    
+
 	    IF (tempDWord1.%X0 = TRUE) THEN // Requested unit mode is enabled
 	      // State in requested unit mode available or rather not disabled? (Stopped, Idle, Execute and Aborted are always present. They cannot be disabled. Every acting state can be disabled)
 	      IF ((statStateInternal = LPMLV2022_StateConstants#STATE_CLEARING)     AND (statConfiguration.DisabledStatesCfg[statUnitMode].%X1 = TRUE))  OR
@@ -227,11 +227,11 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	      THEN // Error - state is not available in target unit mode
 	        diagnostics.buffer[statDiagnosticsBufferIndex].message := MSG_MODE_TRANSITION_NOT_POSSIBLE;
 	        statUnitModeChangeNotAllowed := TRUE;
-	
+
 	      ELSE // State in requested unit mode is available (or is going to be available, because the state configuration is adapted afterwards)
 	        // Set internal variable
 	        statUnitModeCurrentInternal := statUnitMode;
-	        
+
 	        // Read current configuration for the states
 	        statStatesInCurrentMode.clearing := NOT statConfiguration.DisabledStatesCfg[statUnitMode].%X1;
 	        statStatesInCurrentMode.stopped := NOT statConfiguration.DisabledStatesCfg[statUnitMode].%X2;
@@ -256,7 +256,7 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	      statUnitModeChangeNotAllowed := TRUE;
 	    END_IF;
 	  END_IF;
-	  
+
 	  // Set the minimum required states and correct the states configuration for the new current unit mode
 	  IF NOT statStatesInCurrentMode.stopped OR
 	    NOT statStatesInCurrentMode.idle OR
@@ -271,33 +271,33 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	    statStatesInCurrentMode.idle    := TRUE;
 	    statStatesInCurrentMode.execute := TRUE;
 	    statStatesInCurrentMode.aborted := TRUE;
-	
+
 	    // Held branch (Held must be present, if Holding OR Unholding are configured)
 	    IF NOT statStatesInCurrentMode.held
 	      AND (statStatesInCurrentMode.holding OR statStatesInCurrentMode.unholding)
 	    THEN
 	      statStatesInCurrentMode.held := TRUE;
 	    END_IF;
-	
+
 	    // Suspended branch (Suspended must be present, if Suspending OR Unsuspending are configured)
 	    IF NOT statStatesInCurrentMode.suspended
 	      AND (statStatesInCurrentMode.suspending OR statStatesInCurrentMode.unsuspending)
 	    THEN
 	      statStatesInCurrentMode.suspended := TRUE;
 	    END_IF;
-	
+
 	    // Completed branch (Completed must be present, if Completing is configured)
 	    IF NOT statStatesInCurrentMode.completed
 	      AND statStatesInCurrentMode.completing
 	    THEN
 	      statStatesInCurrentMode.completed := TRUE;
 	    END_IF;
-	
+
 	    statDiagnosticsBufferIndex := statDiagnosticsBufferIndex + 1; // Next buffer index
 	    IF statDiagnosticsBufferIndex > LPMLV2022_LimitConstants#DIAG_BUFFER_UPPER_LIM THEN
 	      statDiagnosticsBufferIndex := 0;
 	    END_IF;
-	    
+
 	    // Write diagnostics
 	    //tempRetVal := RD_LOC_T(diagnostics.buffer[statDiagnosticsBufferIndex].timestamp);
 		tempRetVal := GetLocalDateTime(value => tempSysTime);
@@ -329,9 +329,9 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	    diagnostics.buffer[statDiagnosticsBufferIndex].SC := SC;
 	    diagnostics.buffer[statDiagnosticsBufferIndex].message := MSG_STATE_CONFIG_FORCED;
 	  END_IF; // End: set the minimum required states for every unit mode
-	  
+
 	  UnitModeCurrent := statUnitModeCurrentInternal; // Write current unit mode on output
-	  
+
 	  // Write correct state configuration of current mode
 	  CurDisabledStates.%X1 := NOT statStatesInCurrentMode.clearing;
 	  CurDisabledStates.%X2 := NOT statStatesInCurrentMode.stopped;
@@ -350,7 +350,7 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	  CurDisabledStates.%X15 := NOT statStatesInCurrentMode.resetting;
 	  CurDisabledStates.%X16 := NOT statStatesInCurrentMode.completing;
 	  CurDisabledStates.%X17 := NOT statStatesInCurrentMode.completed;
-	  
+
 	  // Check in which states the Hold command is to be considered
 	  IF statStatesInCurrentMode.held THEN // 1st condition: the Held state must be present
 	    // 2nd condition: the corresponding state where Hold shall be considered must be present
@@ -363,7 +363,7 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	    statConsiderHoldCmdIn.unsuspending := statStatesInCurrentMode.unsuspending AND statConfiguration.holdCmdCfg.%X14;
 	    statConsiderHoldCmdIn.completing   := statStatesInCurrentMode.completing   AND statConfiguration.holdCmdCfg.%X16;
 	    statConsiderHoldCmdIn.completed    := statStatesInCurrentMode.completed    AND statConfiguration.holdCmdCfg.%X17;
-	
+
 	  ELSE // Held state is not present, i.e. Hold command is not allowed in any state
 	    statConsiderHoldCmdIn.starting     := FALSE;
 	    statConsiderHoldCmdIn.idle         := FALSE;
@@ -375,7 +375,7 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	    statConsiderHoldCmdIn.completing   := FALSE;
 	    statConsiderHoldCmdIn.completed    := FALSE;
 	  END_IF;
-	  
+
 	  // Write correct state configuration where the Hold command is considered
 	  curHoldCmdCfg := DWORD#16#0000_0000;
 	  // curHoldCmdCfg.%X1  := FALSE;
@@ -395,20 +395,20 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	  // curHoldCmdCfg.%X15 := FALSE;
 	  curHoldCmdCfg.%X16 := statConsiderHoldCmdIn.completing;
 	  curHoldCmdCfg.%X17 := statConsiderHoldCmdIn.completed;
-	  
+
 	  // Check in which states the Complete command is to be considered
 	  IF statStatesInCurrentMode.completed THEN // 1st condition: the Completed state must be present
 	    // 2nd condition: the corresponding state where Complete shall be considered must be present
 	    statConsiderCompleteCmdIn.suspended := statStatesInCurrentMode.suspended AND statConfiguration.completeCmdCfg.%X5;
 	    statConsiderCompleteCmdIn.execute   := statStatesInCurrentMode.execute   AND statConfiguration.completeCmdCfg.%X6;
 	    statConsiderCompleteCmdIn.held      := statStatesInCurrentMode.held      AND statConfiguration.completeCmdCfg.%X11;
-	    
+
 	  ELSE // Completed state is not present, i.e. Complete command is not allowed in any state
 	    statConsiderCompleteCmdIn.suspended := FALSE;
 	    statConsiderCompleteCmdIn.execute   := FALSE;
 	    statConsiderCompleteCmdIn.held      := FALSE;
 	  END_IF;
-	  
+
 	  // Write correct state configuration where the Complete command is considered
 	  curCompleteCmdCfg := DWORD#16#0000_0000;
 	  // curCompleteCmdCfg.%X1  := FALSE;
@@ -428,7 +428,7 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	  // curCompleteCmdCfg.%X15 := FALSE;
 	  // curCompleteCmdCfg.%X16 := FALSE;
 	  // curCompleteCmdCfg.%X17 := FALSE;
-	
+
 	  //-----------------------------------------------
 	  // Message handling for mode manager: foot part
 	  //-----------------------------------------------
@@ -440,7 +440,7 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	  END_IF;
 	END_IF;// End: check if unit mode has to be changed
 	// End: Unit mode manager
-	
+
 	//--------------------------------------------------------------------------------------------------
 	// State manager
 	//--------------------------------------------------------------------------------------------------
@@ -451,7 +451,7 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	    tempSCInternal := FALSE;
 	  END_IF;
 	  statSCOld := SC; // End: Detect a rising edge at state complete signal
-	  
+
 	  //---------------------------------------------------------------------
 	  // Message handling for state manager: head part
 	  //---------------------------------------------------------------------
@@ -461,7 +461,7 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	      statDiagnosticsBufferIndex := 0;
 	    END_IF;
 	    tempDiagnosticsBufferIndexSC := statDiagnosticsBufferIndex;
-	    
+
 	    // Write diagnostics
 	    //tempRetVal := RD_LOC_T(diagnostics.buffer[tempDiagnosticsBufferIndexSC].timestamp);
 		tempRetVal := GetLocalDateTime(value => tempSysTime);
@@ -491,7 +491,7 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	    diagnostics.buffer[tempDiagnosticsBufferIndexSC].UnitMode := TO_SINT(statUnitMode);
 	    diagnostics.buffer[tempDiagnosticsBufferIndexSC].CntrlCmd := TO_SINT(tempCntrlCmd);
 	    diagnostics.buffer[tempDiagnosticsBufferIndexSC].SC := SC;
-	    
+
 	    // Check current state to use SC
 	    IF statStateInternal = LPMLV2022_StateConstants#STATE_CLEARING OR
 	      statStateInternal = LPMLV2022_StateConstants#STATE_STARTING OR
@@ -509,7 +509,7 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	      diagnostics.buffer[tempDiagnosticsBufferIndexSC].message := MSG_SC_NOT_ALLOWED;
 	    END_IF; // End: Check current state to use SC
 	  END_IF;
-	  
+
 	  // Check if defined control command was sent correctly
 	  IF statCmdChangeRequest AND tempCntrlCmd <> statCntrlCmdOld AND tempCntrlCmd <> LPMLV2022_CommandConstants#CMD_UNDEFINED THEN
 	    statDiagnosticsBufferIndex := statDiagnosticsBufferIndex + 1; // Next buffer index
@@ -517,7 +517,7 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	      statDiagnosticsBufferIndex := 0;
 	    END_IF;
 	    tempDiagnosticsBufferIndexCmd := statDiagnosticsBufferIndex;
-	
+
 	    // Write diagnostics
 	    //tempRetVal := RD_LOC_T(diagnostics.buffer[tempDiagnosticsBufferIndexCmd].timestamp);
 		tempRetVal := GetLocalDateTime(value => tempSysTime);
@@ -541,17 +541,17 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 		diagnostics.buffer[statDiagnosticsBufferIndex].timestamp.MINUTE := TO_USINT(tempMinute);
 		diagnostics.buffer[statDiagnosticsBufferIndex].timestamp.SECOND := TO_USINT(tempSecond);
 		diagnostics.buffer[statDiagnosticsBufferIndex].timestamp.NANOSECOND := TO_UDINT(tempNanosecond) + TO_UDINT(tempMicrosecond) * UDINT#1000 + TO_UDINT(tempMillisecond) * UDINT#1000000;
-		
+
 	    diagnostics.buffer[tempDiagnosticsBufferIndexCmd].UnitModeCurrent := TO_SINT(UnitModeCurrent);
 	    diagnostics.buffer[tempDiagnosticsBufferIndexCmd].StateCurrent := TO_SINT(StateCurrent);
 	    diagnostics.buffer[tempDiagnosticsBufferIndexCmd].UnitMode := TO_SINT(statUnitMode);
 	    diagnostics.buffer[tempDiagnosticsBufferIndexCmd].CntrlCmd := TO_SINT(tempCntrlCmd);
 	    diagnostics.buffer[tempDiagnosticsBufferIndexCmd].SC := SC;
-	
+
 	    IF (tempCntrlCmd >= LPMLV2022_CommandConstants#CMD_RESET) AND (tempCntrlCmd <= LPMLV2022_CommandConstants#CMD_COMPLETE)
 	    THEN // A defined control command was sent (RESET, START, STOP, HOLD, UNHOLD, SUSPEND, UNSUSPEND, ABORT, CLEAR, COMPLETE)
 	      diagnostics.buffer[tempDiagnosticsBufferIndexCmd].message := MSG_NO_MESSAGE;
-	
+
 	      IF
 	        // Throw message if any other CntrlCmd than Abort, Stop or Hold is triggered in the following acting states
 	        ((statStateInternal = LPMLV2022_StateConstants#STATE_STARTING OR
@@ -572,13 +572,13 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	        diagnostics.buffer[tempDiagnosticsBufferIndexCmd].message := MSG_CMD_NOT_ALLOWED;
 	        statCntrlCmdNotAllowed := TRUE;
 	      END_IF;
-	
+
 	    ELSE // Not defined control command was sent
 	      diagnostics.buffer[tempDiagnosticsBufferIndexCmd].message := MSG_CMD_NOT_DEFINED;
 	      statCntrlCmdNotAllowed := TRUE;
 	    END_IF;
-	  END_IF; // End: message handling for state manager: head part 
-	
+	  END_IF; // End: message handling for state manager: head part
+
 	  //---------------------------------------------------------------------
 	  // State machine
 	  //---------------------------------------------------------------------
@@ -596,7 +596,7 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	      StateChangeInProcess := FALSE;
 	      statStateInternal := LPMLV2022_StateConstants#STATE_ABORTED;
 	    END_IF;
-	    
+
 	  ELSIF statCmdChangeRequest AND tempCntrlCmd <> statCntrlCmdOld AND tempCntrlCmd = LPMLV2022_CommandConstants#CMD_STOP AND // Check if correct stop command was sent
 	    statStateInternal <> LPMLV2022_StateConstants#STATE_ABORTED AND
 	    statStateInternal <> LPMLV2022_StateConstants#STATE_ABORTING AND
@@ -638,7 +638,7 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	                diagnostics.buffer[tempDiagnosticsBufferIndexCmd].message := MSG_CMD_NOT_ALLOWED;
 	                statCntrlCmdNotAllowed := TRUE;
 	              END_IF;
-	              
+
 	            LPMLV2022_CommandConstants#CMD_HOLD:
 	              IF statConsiderHoldCmdIn.execute THEN
 	                // Check if valid state for command is in use by current unit mode
@@ -658,7 +658,7 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	                diagnostics.buffer[tempDiagnosticsBufferIndexCmd].message := MSG_CMD_NOT_ALLOWED;
 	                statCntrlCmdNotAllowed := TRUE;
 	              END_IF;
-	
+
 	            LPMLV2022_CommandConstants#CMD_SUSPEND:
 	              // Check if valid state for command is in use by current unit mode
 	              IF statStatesInCurrentMode.suspending THEN
@@ -680,7 +680,7 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	              END_IF;
 	          END_CASE;
 	        END_IF;
-	        
+
 	      LPMLV2022_StateConstants#STATE_COMPLETING:
 	        IF statCmdChangeRequest AND tempCntrlCmd <> statCntrlCmdOld AND tempCntrlCmd = LPMLV2022_CommandConstants#CMD_HOLD THEN // Check if state change is requested
 	          IF statConsiderHoldCmdIn.completing THEN
@@ -697,13 +697,13 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	              diagnostics.buffer[tempDiagnosticsBufferIndexCmd].message := MSG_CMD_NOT_ALLOWED;
 	              statCntrlCmdNotAllowed := TRUE;
 	            END_IF;
-	            
+
 	          ELSE // statConsiderHoldCmdIn.completing = FALSE
 	            diagnostics.buffer[tempDiagnosticsBufferIndexCmd].message := MSG_CMD_NOT_ALLOWED;
 	            statCntrlCmdNotAllowed := TRUE;
 	          END_IF;
 	        END_IF;
-	
+
 	        IF (statStateRequested <> LPMLV2022_StateConstants#STATE_HELD) THEN // Check SC only, if no successful Hold command has been triggered
 	          // Check if state is completed
 	          IF tempSCInternal AND statStatesInCurrentMode.completed THEN
@@ -712,13 +712,13 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	          ELSIF tempSCInternal AND NOT statStatesInCurrentMode.completed THEN
 	            diagnostics.buffer[tempDiagnosticsBufferIndexSC].message := MSG_SC_NOT_ALLOWED;
 	          END_IF;
-	
+
 	        ELSE // (statStateRequested = LPMLV2022_StateConstants#STATE_HELD), i.e. successful Hold command has been triggered
 	          IF tempSCInternal THEN
 	            diagnostics.buffer[tempDiagnosticsBufferIndexSC].message := MSG_SC_OVERRIDDEN_BY_CMD_HOLD;
 	          END_IF;
 	        END_IF;
-	
+
 	      LPMLV2022_StateConstants#STATE_COMPLETED:
 	        IF statCmdChangeRequest AND tempCntrlCmd <> statCntrlCmdOld AND tempCntrlCmd <> LPMLV2022_CommandConstants#CMD_UNDEFINED THEN // Check if state change is requested
 	          CASE tempCntrlCmd OF // Check control command
@@ -736,7 +736,7 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	                diagnostics.buffer[tempDiagnosticsBufferIndexCmd].message := MSG_CMD_NOT_ALLOWED;
 	                statCntrlCmdNotAllowed := TRUE;
 	              END_IF;
-	
+
 	            LPMLV2022_CommandConstants#CMD_HOLD:
 	              IF statConsiderHoldCmdIn.completed THEN
 	                // Check if valid state for command is in use by current unit mode
@@ -756,7 +756,7 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	                diagnostics.buffer[tempDiagnosticsBufferIndexCmd].message := MSG_CMD_NOT_ALLOWED;
 	                statCntrlCmdNotAllowed := TRUE;
 	              END_IF;
-	
+
 	            ELSE
 	              IF diagnostics.buffer[tempDiagnosticsBufferIndexCmd].message = MSG_NO_MESSAGE THEN // ELSE: Message was already written in head part of message handling
 	                diagnostics.buffer[tempDiagnosticsBufferIndexCmd].message := MSG_CMD_NOT_ALLOWED;
@@ -764,7 +764,7 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	              END_IF;
 	          END_CASE;
 	        END_IF;
-	        
+
 	      LPMLV2022_StateConstants#STATE_RESETTING:
 	        // Check if state is completed
 	        // No message handling needed -> Idle is minimum required state
@@ -772,7 +772,7 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	          StateChangeInProcess := FALSE;
 	          statStateInternal := LPMLV2022_StateConstants#STATE_IDLE;
 	        END_IF;
-	        
+
 	      LPMLV2022_StateConstants#STATE_IDLE:
 	        //  Check if valid command is sent
 	        IF statCmdChangeRequest AND tempCntrlCmd <> statCntrlCmdOld AND tempCntrlCmd <> LPMLV2022_CommandConstants#CMD_UNDEFINED THEN // Check if state change is requested
@@ -788,7 +788,7 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	                StateChangeInProcess := FALSE;
 	                statStateInternal := LPMLV2022_StateConstants#STATE_EXECUTE;
 	              END_IF;
-	
+
 	            LPMLV2022_CommandConstants#CMD_HOLD:
 	              IF statConsiderHoldCmdIn.idle THEN
 	                // Check if valid state for command is in use by current unit mode
@@ -808,7 +808,7 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	                diagnostics.buffer[tempDiagnosticsBufferIndexCmd].message := MSG_CMD_NOT_ALLOWED;
 	                statCntrlCmdNotAllowed := TRUE;
 	              END_IF;
-	
+
 	            ELSE
 	              IF diagnostics.buffer[tempDiagnosticsBufferIndexCmd].message = MSG_NO_MESSAGE THEN // ELSE: Message was already written in head part of message handling
 	                diagnostics.buffer[tempDiagnosticsBufferIndexCmd].message := MSG_CMD_NOT_ALLOWED;
@@ -816,7 +816,7 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	              END_IF;
 	          END_CASE;
 	        END_IF;
-	        
+
 	      LPMLV2022_StateConstants#STATE_STARTING,
 	      LPMLV2022_StateConstants#STATE_UNHOLDING,
 	      LPMLV2022_StateConstants#STATE_UNSUSPENDING:
@@ -838,26 +838,26 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	              diagnostics.buffer[tempDiagnosticsBufferIndexCmd].message := MSG_CMD_NOT_ALLOWED;
 	              statCntrlCmdNotAllowed := TRUE;
 	            END_IF;
-	
+
 	          ELSE // statConsiderHoldCmdIn.xxx = FALSE
 	            diagnostics.buffer[tempDiagnosticsBufferIndexCmd].message := MSG_CMD_NOT_ALLOWED;
 	            statCntrlCmdNotAllowed := TRUE;
 	          END_IF;
 	        END_IF;
-	        
+
 	        IF (statStateRequested <> LPMLV2022_StateConstants#STATE_HELD) THEN // Check SC only, if no successful Hold command has been triggered
 	          // Check if state is completed
 	          IF tempSCInternal THEN // ELSE: Wait for state complete signal
 	            StateChangeInProcess := FALSE;
 	            statStateInternal := LPMLV2022_StateConstants#STATE_EXECUTE;
 	          END_IF;
-	
+
 	        ELSE // (statStateRequested = LPMLV2022_StateConstants#STATE_HELD), i.e. successful Hold command has been triggered
 	          IF tempSCInternal THEN
 	            diagnostics.buffer[tempDiagnosticsBufferIndexSC].message := MSG_SC_OVERRIDDEN_BY_CMD_HOLD;
 	          END_IF;
 	        END_IF;
-	
+
 	      LPMLV2022_StateConstants#STATE_HOLDING:
 	        // Check if state is completed
 	        IF tempSCInternal AND statStatesInCurrentMode.held THEN // ELSE: Wait for state complete signal
@@ -866,7 +866,7 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	        ELSIF tempSCInternal AND NOT statStatesInCurrentMode.held THEN
 	          diagnostics.buffer[tempDiagnosticsBufferIndexSC].message := MSG_SC_NOT_ALLOWED;
 	        END_IF;
-	        
+
 	      LPMLV2022_StateConstants#STATE_HELD:
 	        //  Check if valid command is sent
 	        IF statCmdChangeRequest AND tempCntrlCmd <> statCntrlCmdOld AND tempCntrlCmd <> LPMLV2022_CommandConstants#CMD_UNDEFINED THEN // Check if state change is requested
@@ -881,7 +881,7 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	                StateChangeInProcess := FALSE;
 	                statStateInternal := LPMLV2022_StateConstants#STATE_EXECUTE;
 	              END_IF;
-	
+
 	            LPMLV2022_CommandConstants#CMD_COMPLETE:
 	              IF statConsiderCompleteCmdIn.held THEN
 	                // Check if valid state for command is in use by current unit mode
@@ -901,7 +901,7 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	                diagnostics.buffer[tempDiagnosticsBufferIndexCmd].message := MSG_CMD_NOT_ALLOWED;
 	                statCntrlCmdNotAllowed := TRUE;
 	              END_IF;
-	
+
 	            ELSE
 	              IF diagnostics.buffer[tempDiagnosticsBufferIndexCmd].message = MSG_NO_MESSAGE THEN // ELSE: Message was already written in head part of message handling
 	                diagnostics.buffer[tempDiagnosticsBufferIndexCmd].message := MSG_CMD_NOT_ALLOWED;
@@ -909,7 +909,7 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	              END_IF;
 	          END_CASE;
 	        END_IF;
-	        
+
 	      LPMLV2022_StateConstants#STATE_SUSPENDING:
 	        IF statCmdChangeRequest AND tempCntrlCmd <> statCntrlCmdOld AND tempCntrlCmd = LPMLV2022_CommandConstants#CMD_HOLD THEN // Check if state change is requested
 	          IF statConsiderHoldCmdIn.suspending THEN
@@ -926,13 +926,13 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	              diagnostics.buffer[tempDiagnosticsBufferIndexCmd].message := MSG_CMD_NOT_ALLOWED;
 	              statCntrlCmdNotAllowed := TRUE;
 	            END_IF;
-	
+
 	          ELSE // statConsiderHoldCmdIn.suspending = FALSE
 	            diagnostics.buffer[tempDiagnosticsBufferIndexCmd].message := MSG_CMD_NOT_ALLOWED;
 	            statCntrlCmdNotAllowed := TRUE;
 	          END_IF;
 	        END_IF;
-	        
+
 	        IF (statStateRequested <> LPMLV2022_StateConstants#STATE_HELD) THEN // Check SC only, if no successful Hold command has been triggered
 	          // Check if state is completed
 	          IF tempSCInternal AND statStatesInCurrentMode.suspended THEN // ELSE: Wait for state complete signal
@@ -941,13 +941,13 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	          ELSIF tempSCInternal AND NOT statStatesInCurrentMode.suspended THEN
 	            diagnostics.buffer[tempDiagnosticsBufferIndexSC].message := MSG_SC_NOT_ALLOWED;
 	          END_IF;
-	
+
 	        ELSE // (statStateRequested = LPMLV2022_StateConstants#STATE_HELD), i.e. successful Hold command has been triggered
 	          IF tempSCInternal THEN
 	            diagnostics.buffer[tempDiagnosticsBufferIndexSC].message := MSG_SC_OVERRIDDEN_BY_CMD_HOLD;
 	          END_IF;
 	        END_IF;
-	
+
 	      LPMLV2022_StateConstants#STATE_SUSPENDED:
 	        //  Check if valid command is sent
 	        IF statCmdChangeRequest AND tempCntrlCmd <> statCntrlCmdOld AND tempCntrlCmd <> LPMLV2022_CommandConstants#CMD_UNDEFINED THEN // Check if state change is requested
@@ -962,7 +962,7 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	                StateChangeInProcess := FALSE;
 	                statStateInternal := LPMLV2022_StateConstants#STATE_EXECUTE;
 	              END_IF;
-	
+
 	            LPMLV2022_CommandConstants#CMD_COMPLETE:
 	              IF statConsiderCompleteCmdIn.suspended THEN
 	                // Check if valid state for command is in use by current unit mode
@@ -982,7 +982,7 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	                diagnostics.buffer[tempDiagnosticsBufferIndexCmd].message := MSG_CMD_NOT_ALLOWED;
 	                statCntrlCmdNotAllowed := TRUE;
 	              END_IF;
-	
+
 	            LPMLV2022_CommandConstants#CMD_HOLD:
 	              IF statConsiderHoldCmdIn.suspended THEN
 	                // Check if valid state for command is in use by current unit mode
@@ -1002,7 +1002,7 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	                diagnostics.buffer[tempDiagnosticsBufferIndexCmd].message := MSG_CMD_NOT_ALLOWED;
 	                statCntrlCmdNotAllowed := TRUE;
 	              END_IF;
-	
+
 	            ELSE
 	              IF diagnostics.buffer[tempDiagnosticsBufferIndexCmd].message = MSG_NO_MESSAGE THEN // ELSE: Message was already written in head part of message handling
 	                diagnostics.buffer[tempDiagnosticsBufferIndexCmd].message := MSG_CMD_NOT_ALLOWED;
@@ -1010,7 +1010,7 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	              END_IF;
 	          END_CASE;
 	        END_IF;
-	        
+
 	      LPMLV2022_StateConstants#STATE_ABORTING:
 	        // Check if state is completed
 	        // No message handling needed -> Aborted is minimum required state
@@ -1018,7 +1018,7 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	          StateChangeInProcess := FALSE;
 	          statStateInternal := LPMLV2022_StateConstants#STATE_ABORTED;
 	        END_IF;
-	        
+
 	      LPMLV2022_StateConstants#STATE_ABORTED:
 	        //  Check if valid command is sent
 	        IF statCmdChangeRequest AND tempCntrlCmd <> statCntrlCmdOld AND tempCntrlCmd <> LPMLV2022_CommandConstants#CMD_UNDEFINED THEN // Check if state change is requested
@@ -1040,7 +1040,7 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	              END_IF;
 	          END_CASE;
 	        END_IF;
-	        
+
 	      LPMLV2022_StateConstants#STATE_CLEARING,
 	      LPMLV2022_StateConstants#STATE_STOPPING:
 	        // Check if state is completed
@@ -1049,7 +1049,7 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	          StateChangeInProcess := FALSE;
 	          statStateInternal := LPMLV2022_StateConstants#STATE_STOPPED;
 	        END_IF;
-	        
+
 	      LPMLV2022_StateConstants#STATE_STOPPED:
 	        IF statCmdChangeRequest AND tempCntrlCmd <> statCntrlCmdOld AND tempCntrlCmd <> LPMLV2022_CommandConstants#CMD_UNDEFINED THEN // Check if state change is requested
 	          // Check if valid command is sent
@@ -1068,7 +1068,7 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	                diagnostics.buffer[tempDiagnosticsBufferIndexCmd].message := MSG_CMD_NOT_ALLOWED;
 	                statCntrlCmdNotAllowed := TRUE;
 	              END_IF;
-	
+
 	            ELSE
 	              IF diagnostics.buffer[tempDiagnosticsBufferIndexCmd].message = MSG_NO_MESSAGE THEN // ELSE: Message was already written in head part of message handling
 	                diagnostics.buffer[tempDiagnosticsBufferIndexCmd].message := MSG_CMD_NOT_ALLOWED;
@@ -1076,17 +1076,17 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	              END_IF;
 	          END_CASE;
 	        END_IF;
-	        
+
 	      LPMLV2022_StateConstants#STATE_UNDEFINED:
 	        StateChangeInProcess := FALSE;
 	        statStateRequested := LPMLV2022_StateConstants#STATE_STOPPED;
 	        statStateInternal := LPMLV2022_StateConstants#STATE_STOPPED;
-	
+
 	      ELSE
 	        ; // Undefined state
 	    END_CASE;
 	  END_IF; // End: state machine
-	
+
 	  //-------------------------------------------------
 	  // Message handling for state manager: foot part
 	  //-------------------------------------------------
@@ -1105,17 +1105,17 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	  END_IF; // End: message handling for state manager: foot part
 	END_IF; // End: As from second cycle
 	// End: State manager
-	
+
 	//--------------------------------------------------------------------------------------------------
 	// Write outputs
 	//--------------------------------------------------------------------------------------------------
 	StateCurrent := statStateInternal; // Set output
-	
+
 	diagnostics.bufferIndex := statDiagnosticsBufferIndex; // Local variable is used during block execution -> Copy back/Set output
 	IF statFirstCycle THEN
 	  statFirstCycle := FALSE;
 	END_IF;
-	
+
 	// Save values for edge detection
 	IF statUnitModeChangeRequest THEN
 	  statUnitModeOld := statUnitMode;
@@ -1126,16 +1126,16 @@ FUNCTION_BLOCK LPMLV2022_UnitModeStateManager
 	IF statStateInternal <> statStateCurrentOld THEN
 	  statStateCurrentOld := statStateInternal;
 	END_IF;
-	
+
 	StateRequested := statStateRequested;
-	
+
 	IF (statUnitModeChangeRequest = FALSE) OR (statUnitMode = LPMLV2022_ModeConstants#MODE_INVALID) THEN
 	  statUnitModeChangeNotAllowed := FALSE;
 	END_IF;
 	IF (statCmdChangeRequest = FALSE) OR (tempCntrlCmd = LPMLV2022_CommandConstants#CMD_UNDEFINED) THEN
 	  statCntrlCmdNotAllowed := FALSE;
 	END_IF;
-	
+
 	unitModeChangeNotAllowed := statUnitModeChangeNotAllowed;
 	cntrlCmdNotAllowed       := statCntrlCmdNotAllowed;
 END_FUNCTION_BLOCK
