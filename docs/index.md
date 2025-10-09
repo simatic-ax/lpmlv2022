@@ -20,7 +20,6 @@ The library is organized into the following main components:
 ### Additional Function Blocks
 
 - [`LPMLV2022_Stacklight`](./function-blocks/LPMLV2022_Stacklight.md): Stacklight status according to ANSI/ISA-TR88.00.02-2022
-- [`LPMLV2022_UnitModeStateTimes`](./function-blocks/LPMLV2022_UnitModeStateTimes.md): Determination of unit modes and states times
 
 ### Configuration Functions
 
