@@ -11,11 +11,9 @@ The library is a direct conversion of the functionally identical library [LPMLV2
 - **OMAC PackML V2022 Compliance**: Full implementation of ANSI/ISA-TR88.00.02-2022 standard for machine and unit state management
 - **Multi-Mode Operation**: Support for Production, Maintenance, Manual, and up to 28 user-defined modes
 - **Complete State Machine**: 17 standardized states including Execute, Stopped, Starting, Holding, Suspending, and more
-- **PackTags Interface**: Standardized variable structures for machine data exchange with HMI, MES, and Enterprise systems
 - **Flexible Configuration**: Configurable enabled modes, disabled states, mode transitions, and command handling
 - **Boolean Wrapper Support**: Simplified boolean interface for unit state manager integration
 - **Stacklight Integration**: Built-in stacklight status management according to PackML standards
-- **Time Tracking**: Unit mode and state execution time monitoring capabilities
 - **Comprehensive Diagnostics**: Built-in diagnostics and status reporting functionality
 
 ### Requirements
