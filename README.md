@@ -4,7 +4,7 @@
 
 The LPMLV2022 library provides a user-friendly basis for the implementation of an OMAC PackML compliant mode and state manager including _PackTags_ for the machine data interface for SIMATIC controllers.
 
-The library is a direct conversion of the functionally identical library [LPMLV2022](https://support.industry.siemens.com/cs/ww/en/view/109821198) for use inside the TIA Portal
+The library is a direct conversion of the functionally identical library [LPMLV2022](https://support.industry.siemens.com/cs/ww/en/view/109821198) for use inside the TIA Portal.
 
 ### Key Features
 
