@@ -1,6 +1,6 @@
 # General information
 name: "@simatic-ax/lpmlv2022"
-version: 0.0.0-placeholder
+version: 0.0.0-placeholder # 2.0.0
 author: Siemens AG
 
 # Description will be displayed in the apax extension
