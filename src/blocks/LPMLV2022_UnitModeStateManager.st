@@ -1,4 +1,4 @@
-﻿USING Siemens.Simatic.S71500.Clocks;
+﻿USING Siemens.Simatic.Clocks;
 USING System.DateTime;
 NAMESPACE Simatic.Ax.LPMLV2022
 ///================================================================================

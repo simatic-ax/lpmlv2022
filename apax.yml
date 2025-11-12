@@ -29,12 +29,12 @@ publicKeys:
 
 # Dependencies
 dependencies:
-  "@ax/simatic-1500-clocks": 10.0.6
-  "@ax/system-datetime": 10.0.24
-  "@ax/system-conversion": 10.0.24
+  "@ax/simatic-clocks": ^11.0.14
+  "@ax/system-datetime": ^10.2.7
+  "@ax/system-conversion": ^10.2.7
 
 devDependencies:
-  "@ax/sdk": ^2504.1.1
+  "@ax/sdk": ^2510.0.0
 
 # Project variables
 variables:
@@ -50,4 +50,5 @@ files:
 
 # Catalog to be intalled
 catalogs:
-  "@ax/simatic-ax": ^2504.1.1
+  "@ax/simatic-ax": ^2510.0.0
+
