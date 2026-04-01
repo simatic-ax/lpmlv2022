@@ -12,14 +12,19 @@ NAMESPACE Simatic.Ax.LPMLV2022
 ///
 ///                Note: All inputs must be set to comply with ANSI/ISA-TR88.00.02-2022
 ///================================================================================
-FUNCTION LPMLV2022_ConfigureCompleteCmdCfg
+FUNCTION ConfigureCompleteCmdCfg
     VAR_INPUT
-        Suspended : BOOL; // TRUE: The Complete control command is taken into account in state Suspended
-        Execute : BOOL; // TRUE: The Complete control command is taken into account in state Execute
-        Held : BOOL; // TRUE: The Complete control command is taken into account in state Held
+        /// TRUE: The Complete control command is taken into account in state Suspended
+        Suspended : BOOL;
+        /// TRUE: The Complete control command is taken into account in state Execute
+        Execute : BOOL;
+        /// TRUE: The Complete control command is taken into account in state Held
+        Held : BOOL;
     END_VAR
 
     VAR_OUTPUT
+        /// Complete control command configuration for all unit modes for direct connection
+        /// with the input config.completeCmdCfg of the desired UnitModeStateManager instance.
         completeCmdCfg : DWORD;
     END_VAR
 

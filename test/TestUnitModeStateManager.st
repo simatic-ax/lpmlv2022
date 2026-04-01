@@ -6,25 +6,25 @@ NAMESPACE Simatic.Ax.LPMLV2022.Tests
     {TestFixture}
     CLASS TestStopNotAllowedInStop
         VAR
-            unitModeManager : LPMLV2022_UnitModeStateManager;
+            unitModeManager : UnitModeStateManager;
         END_VAR
-        
+
 
         {Test}
         METHOD PUBLIC TestStopNotAllowedInStop_RisingEdge
             VAR_TEMP
                 i : UINT;
             END_VAR
-            
+
             FOR i := 0 TO UINT#10 DO
-                unitModeManager();  
+                unitModeManager();
             END_FOR;
 
-            unitModeManager.CntrlCmd := LPMLV2022_CommandConstants#CMD_START;
+            unitModeManager.CntrlCmd := Command#START;
             unitModeManager.CmdChangeRequest := TRUE;
 
             FOR i := 0 TO UINT#10 DO
-                unitModeManager();  
+                unitModeManager();
             END_FOR;
 
             Assert.Equal(actual := unitModeManager.cntrlCmdNotAllowed, expected := TRUE);
@@ -36,38 +36,38 @@ NAMESPACE Simatic.Ax.LPMLV2022.Tests
     {TestFixture}
     CLASS TestCmdNotAllowedInResetting
         VAR
-            unitModeManager : LPMLV2022_UnitModeStateManager;
+            unitModeManager : UnitModeStateManager;
         END_VAR
-        
+
 
         {Test}
         METHOD PUBLIC TestStopNotAllowedInStop_RisingEdge
             VAR_TEMP
                 i : UINT;
             END_VAR
-            
+
             unitModeManager();  // First cycle
 
             // Test rising edge detection for Reset command
-            unitModeManager.CntrlCmd := LPMLV2022_CommandConstants#CMD_RESET;
+            unitModeManager.CntrlCmd := Command#RESET;
             unitModeManager();
 
             // Rising edge - should trigger command
             unitModeManager.CmdChangeRequest := TRUE;
             FOR i := 0 TO UINT#10 DO
-                unitModeManager();  
+                unitModeManager();
             END_FOR;
 
             unitModeManager.CmdChangeRequest := FALSE;
             FOR i := 0 TO UINT#10 DO
-                unitModeManager();  
+                unitModeManager();
             END_FOR;
 
-            unitModeManager.CntrlCmd := LPMLV2022_CommandConstants#CMD_START;
+            unitModeManager.CntrlCmd := Command#START;
             unitModeManager.CmdChangeRequest := TRUE;
             // CMD_STARET in RESETTING not allowed
             FOR i := 0 TO UINT#10 DO
-                unitModeManager();  
+                unitModeManager();
             END_FOR;
             Assert.Equal(actual := unitModeManager.cntrlCmdNotAllowed, expected := TRUE);
             Assert.Equal(actual := unitModeManager.diagnostics.buffer[1].message, expected := BYTE#16#84); //  MSG_CMD_NOT_ALLOWED : Byte := BYTE#16#84;
@@ -78,9 +78,9 @@ NAMESPACE Simatic.Ax.LPMLV2022.Tests
     {TestFixture}
     CLASS TestExecuteCompleteTransition
         VAR
-            unitModeManager : LPMLV2022_UnitModeStateManager;
+            unitModeManager : UnitModeStateManager;
         END_VAR
-        
+
 
         {Test}
         METHOD PUBLIC TestExecuteCompletingTransition
@@ -88,56 +88,56 @@ NAMESPACE Simatic.Ax.LPMLV2022.Tests
                 i : UINT;
                 disabled : DWORD;
             END_VAR
-            
-            LPMLV2022_ConfigureDisabledStatesCfg(Completing := TRUE,  DisabledStatesCfg => disabled);
+
+            ConfigureDisabledStatesCfg(Completing := TRUE,  DisabledStatesCfg => disabled);
             unitModeManager.config.DisabledStatesCfg[1] := disabled;
             unitModeManager();  // First cycle
 
-            unitModeManager.UnitMode := LPMLV2022_ModeConstants#MODE_PRODUCTION;
+            unitModeManager.UnitMode := Mode#PRODUCTION;
             unitModeManager.UnitModeChangeRequest := TRUE;
             FOR i := 0 TO UINT#10 DO
-                unitModeManager();  
+                unitModeManager();
             END_FOR;
             unitModeManager.UnitModeChangeRequest := FALSE;
-            Assert.Equal(actual := unitModeManager.UnitModeCurrent, expected := LPMLV2022_ModeConstants#MODE_PRODUCTION);
+            Assert.Equal(actual := unitModeManager.UnitModeCurrent, expected := Mode#PRODUCTION);
 
 
             // Test rising edge detection for Reset command
-            unitModeManager.CntrlCmd := LPMLV2022_CommandConstants#CMD_RESET;
+            unitModeManager.CntrlCmd := Command#RESET;
             unitModeManager();
 
             // Rising edge - should trigger command
             unitModeManager.CmdChangeRequest := TRUE;
             FOR i := 0 TO UINT#10 DO
-                unitModeManager();  
+                unitModeManager();
             END_FOR;
 
             unitModeManager.CmdChangeRequest := FALSE;
             unitModeManager.SC := TRUE;
             FOR i := 0 TO UINT#10 DO
-                unitModeManager();  
+                unitModeManager();
             END_FOR;
 
-            unitModeManager.CntrlCmd := LPMLV2022_CommandConstants#CMD_START;
+            unitModeManager.CntrlCmd := Command#START;
             unitModeManager.CmdChangeRequest := TRUE;
             unitModeManager.SC := FALSE;
             FOR i := 0 TO UINT#10 DO
-                unitModeManager();  
+                unitModeManager();
             END_FOR;
 
             unitModeManager.CmdChangeRequest := FALSE;
             unitModeManager.SC := TRUE;
             FOR i := 0 TO UINT#10 DO
-                unitModeManager();  
+                unitModeManager();
             END_FOR;
 
-            unitModeManager.CntrlCmd := LPMLV2022_CommandConstants#CMD_COMPLETE;
+            unitModeManager.CntrlCmd := Command#COMPLETE;
             unitModeManager.CmdChangeRequest := TRUE;
             unitModeManager.SC := FALSE;
             FOR i := 0 TO UINT#10 DO
-                unitModeManager();  
+                unitModeManager();
             END_FOR;
-            Assert.Equal(actual := unitModeManager.StateCurrent, expected := LPMLV2022_StateConstants#STATE_COMPLETED);
+            Assert.Equal(actual := unitModeManager.StateCurrent, expected := State#COMPLETED);
 
         END_METHOD
     END_CLASS
@@ -146,9 +146,9 @@ NAMESPACE Simatic.Ax.LPMLV2022.Tests
     {TestFixture}
     CLASS TestExecuteHoldTransition
         VAR
-            unitModeManager : LPMLV2022_UnitModeStateManager;
+            unitModeManager : UnitModeStateManager;
         END_VAR
-        
+
 
         {Test}
         METHOD PUBLIC TestExecuteHoldingTransition
@@ -156,56 +156,56 @@ NAMESPACE Simatic.Ax.LPMLV2022.Tests
                 i : UINT;
                 disabled : DWORD;
             END_VAR
-            
-            LPMLV2022_ConfigureDisabledStatesCfg(Holding := TRUE,  DisabledStatesCfg => disabled);
+
+            ConfigureDisabledStatesCfg(Holding := TRUE,  DisabledStatesCfg => disabled);
             unitModeManager.config.DisabledStatesCfg[1] := disabled;
             unitModeManager();  // First cycle
 
-            unitModeManager.UnitMode := LPMLV2022_ModeConstants#MODE_PRODUCTION;
+            unitModeManager.UnitMode := Mode#PRODUCTION;
             unitModeManager.UnitModeChangeRequest := TRUE;
             FOR i := 0 TO UINT#10 DO
-                unitModeManager();  
+                unitModeManager();
             END_FOR;
             unitModeManager.UnitModeChangeRequest := FALSE;
-            Assert.Equal(actual := unitModeManager.UnitModeCurrent, expected := LPMLV2022_ModeConstants#MODE_PRODUCTION);
+            Assert.Equal(actual := unitModeManager.UnitModeCurrent, expected := Mode#PRODUCTION);
 
 
             // Test rising edge detection for Reset command
-            unitModeManager.CntrlCmd := LPMLV2022_CommandConstants#CMD_RESET;
+            unitModeManager.CntrlCmd := Command#RESET;
             unitModeManager();
 
             // Rising edge - should trigger command
             unitModeManager.CmdChangeRequest := TRUE;
             FOR i := 0 TO UINT#10 DO
-                unitModeManager();  
+                unitModeManager();
             END_FOR;
 
             unitModeManager.CmdChangeRequest := FALSE;
             unitModeManager.SC := TRUE;
             FOR i := 0 TO UINT#10 DO
-                unitModeManager();  
+                unitModeManager();
             END_FOR;
 
-            unitModeManager.CntrlCmd := LPMLV2022_CommandConstants#CMD_START;
+            unitModeManager.CntrlCmd := Command#START;
             unitModeManager.CmdChangeRequest := TRUE;
             unitModeManager.SC := FALSE;
             FOR i := 0 TO UINT#10 DO
-                unitModeManager();  
+                unitModeManager();
             END_FOR;
 
             unitModeManager.CmdChangeRequest := FALSE;
             unitModeManager.SC := TRUE;
             FOR i := 0 TO UINT#10 DO
-                unitModeManager();  
+                unitModeManager();
             END_FOR;
 
-            unitModeManager.CntrlCmd := LPMLV2022_CommandConstants#CMD_HOLD;
+            unitModeManager.CntrlCmd := Command#HOLD;
             unitModeManager.CmdChangeRequest := TRUE;
             unitModeManager.SC := FALSE;
             FOR i := 0 TO UINT#10 DO
-                unitModeManager();  
+                unitModeManager();
             END_FOR;
-            Assert.Equal(actual := unitModeManager.StateCurrent, expected := LPMLV2022_StateConstants#STATE_HELD);
+            Assert.Equal(actual := unitModeManager.StateCurrent, expected := State#HELD);
 
         END_METHOD
     END_CLASS
@@ -213,9 +213,9 @@ NAMESPACE Simatic.Ax.LPMLV2022.Tests
     {TestFixture}
     CLASS TestExecuteSuspendedTransition
         VAR
-            unitModeManager : LPMLV2022_UnitModeStateManager;
+            unitModeManager : UnitModeStateManager;
         END_VAR
-        
+
 
         {Test}
         METHOD PUBLIC TestExecuteSuspendedTransition_Test
@@ -223,56 +223,56 @@ NAMESPACE Simatic.Ax.LPMLV2022.Tests
                 i : UINT;
                 disabled : DWORD;
             END_VAR
-            
-            LPMLV2022_ConfigureDisabledStatesCfg(Suspending := TRUE,  DisabledStatesCfg => disabled);
+
+            ConfigureDisabledStatesCfg(Suspending := TRUE,  DisabledStatesCfg => disabled);
             unitModeManager.config.DisabledStatesCfg[1] := disabled;
             unitModeManager();  // First cycle
 
-            unitModeManager.UnitMode := LPMLV2022_ModeConstants#MODE_PRODUCTION;
+            unitModeManager.UnitMode := Mode#PRODUCTION;
             unitModeManager.UnitModeChangeRequest := TRUE;
             FOR i := 0 TO UINT#10 DO
-                unitModeManager();  
+                unitModeManager();
             END_FOR;
             unitModeManager.UnitModeChangeRequest := FALSE;
-            Assert.Equal(actual := unitModeManager.UnitModeCurrent, expected := LPMLV2022_ModeConstants#MODE_PRODUCTION);
+            Assert.Equal(actual := unitModeManager.UnitModeCurrent, expected := Mode#PRODUCTION);
 
 
             // Test rising edge detection for Reset command
-            unitModeManager.CntrlCmd := LPMLV2022_CommandConstants#CMD_RESET;
+            unitModeManager.CntrlCmd := Command#RESET;
             unitModeManager();
 
             // Rising edge - should trigger command
             unitModeManager.CmdChangeRequest := TRUE;
             FOR i := 0 TO UINT#10 DO
-                unitModeManager();  
+                unitModeManager();
             END_FOR;
 
             unitModeManager.CmdChangeRequest := FALSE;
             unitModeManager.SC := TRUE;
             FOR i := 0 TO UINT#10 DO
-                unitModeManager();  
+                unitModeManager();
             END_FOR;
 
-            unitModeManager.CntrlCmd := LPMLV2022_CommandConstants#CMD_START;
+            unitModeManager.CntrlCmd := Command#START;
             unitModeManager.CmdChangeRequest := TRUE;
             unitModeManager.SC := FALSE;
             FOR i := 0 TO UINT#10 DO
-                unitModeManager();  
+                unitModeManager();
             END_FOR;
 
             unitModeManager.CmdChangeRequest := FALSE;
             unitModeManager.SC := TRUE;
             FOR i := 0 TO UINT#10 DO
-                unitModeManager();  
+                unitModeManager();
             END_FOR;
 
-            unitModeManager.CntrlCmd := LPMLV2022_CommandConstants#CMD_SUSPEND;
+            unitModeManager.CntrlCmd := Command#SUSPEND;
             unitModeManager.CmdChangeRequest := TRUE;
             unitModeManager.SC := FALSE;
             FOR i := 0 TO UINT#10 DO
-                unitModeManager();  
+                unitModeManager();
             END_FOR;
-            Assert.Equal(actual := unitModeManager.StateCurrent, expected := LPMLV2022_StateConstants#STATE_SUSPENDED);
+            Assert.Equal(actual := unitModeManager.StateCurrent, expected := State#SUSPENDED);
 
         END_METHOD
     END_CLASS
@@ -280,9 +280,9 @@ NAMESPACE Simatic.Ax.LPMLV2022.Tests
     {TestFixture}
     CLASS TestHoldAfterCompleted
         VAR
-            unitModeManager : LPMLV2022_UnitModeStateManager;
+            unitModeManager : UnitModeStateManager;
         END_VAR
-        
+
 
         {Test}
         METHOD PUBLIC TestHoldAfterCompleted_Test
@@ -290,69 +290,69 @@ NAMESPACE Simatic.Ax.LPMLV2022.Tests
                 i : UINT;
                 holdCfg : DWORD;
             END_VAR
-            
-            LPMLV2022_ConfigureHoldCmdCfg(Completed := TRUE,  holdCmdCfg => holdCfg);
+
+            ConfigureHoldCmdCfg(Completed := TRUE,  holdCmdCfg => holdCfg);
             unitModeManager.config.holdCmdCfg := holdCfg;
             unitModeManager();  // First cycle
 
-            unitModeManager.UnitMode := LPMLV2022_ModeConstants#MODE_PRODUCTION;
+            unitModeManager.UnitMode := Mode#PRODUCTION;
             unitModeManager.UnitModeChangeRequest := TRUE;
             FOR i := 0 TO UINT#10 DO
-                unitModeManager();  
+                unitModeManager();
             END_FOR;
             unitModeManager.UnitModeChangeRequest := FALSE;
-            Assert.Equal(actual := unitModeManager.UnitModeCurrent, expected := LPMLV2022_ModeConstants#MODE_PRODUCTION);
+            Assert.Equal(actual := unitModeManager.UnitModeCurrent, expected := Mode#PRODUCTION);
 
 
             // Test rising edge detection for Reset command
-            unitModeManager.CntrlCmd := LPMLV2022_CommandConstants#CMD_RESET;
+            unitModeManager.CntrlCmd := Command#RESET;
             unitModeManager();
 
             // Rising edge - should trigger command
             unitModeManager.CmdChangeRequest := TRUE;
             FOR i := 0 TO UINT#10 DO
-                unitModeManager();  
+                unitModeManager();
             END_FOR;
 
             unitModeManager.CmdChangeRequest := FALSE;
             unitModeManager.SC := TRUE;
             FOR i := 0 TO UINT#10 DO
-                unitModeManager();  
+                unitModeManager();
             END_FOR;
 
-            unitModeManager.CntrlCmd := LPMLV2022_CommandConstants#CMD_START;
+            unitModeManager.CntrlCmd := Command#START;
             unitModeManager.CmdChangeRequest := TRUE;
             unitModeManager.SC := FALSE;
             FOR i := 0 TO UINT#10 DO
-                unitModeManager();  
+                unitModeManager();
             END_FOR;
 
             unitModeManager.CmdChangeRequest := FALSE;
             unitModeManager.SC := TRUE;
             FOR i := 0 TO UINT#10 DO
-                unitModeManager();  
+                unitModeManager();
             END_FOR;
 
-            unitModeManager.CntrlCmd := LPMLV2022_CommandConstants#CMD_COMPLETE;
+            unitModeManager.CntrlCmd := Command#COMPLETE;
             unitModeManager.CmdChangeRequest := TRUE;
             unitModeManager.SC := FALSE;
             FOR i := 0 TO UINT#10 DO
-                unitModeManager();  
+                unitModeManager();
             END_FOR;
 
             unitModeManager.CmdChangeRequest := FALSE;
             unitModeManager.SC := TRUE;
             FOR i := 0 TO UINT#10 DO
-                unitModeManager();  
+                unitModeManager();
             END_FOR;
 
-            unitModeManager.CntrlCmd := LPMLV2022_CommandConstants#CMD_HOLD;
+            unitModeManager.CntrlCmd := Command#HOLD;
             unitModeManager.CmdChangeRequest := TRUE;
             unitModeManager.SC := FALSE;
             FOR i := 0 TO UINT#10 DO
-                unitModeManager();  
+                unitModeManager();
             END_FOR;
-            Assert.Equal(actual := unitModeManager.StateCurrent, expected := LPMLV2022_StateConstants#STATE_HOLDING);
+            Assert.Equal(actual := unitModeManager.StateCurrent, expected := State#HOLDING);
 
         END_METHOD
     END_CLASS

@@ -13,20 +13,31 @@ NAMESPACE Simatic.Ax.LPMLV2022
 ///                Note: Only the inputs 'Suspended' and 'Execute' must be set
 ///                      to comply with ANSI/ISA-TR88.00.02-2022
 ///================================================================================
-FUNCTION LPMLV2022_ConfigureHoldCmdCfg
+FUNCTION ConfigureHoldCmdCfg
     VAR_INPUT
-        Starting : BOOL; // TRUE: The Hold control command is taken into account in state Starting
-        Idle : BOOL; // TRUE: The Hold control command is taken into account in state Idle
-        Suspended : BOOL; // TRUE: The Hold control command is taken into account in state Suspended
-        Execute : BOOL; // TRUE: The Hold control command is taken into account in state Execute
-        Unholding : BOOL; // TRUE: The Hold control command is taken into account in state Unholding
-        Suspending : BOOL; // TRUE: The Hold control command is taken into account in state Suspending
-        Unsuspending : BOOL; // TRUE: The Hold control command is taken into account in state Unsuspending
-        Completing : BOOL; // TRUE: The Hold control command is taken into account in state Completing
-        Completed : BOOL; // TRUE: The Hold control command is taken into account in state Completed
+        /// TRUE: The Hold control command is taken into account in state Starting
+        Starting : BOOL;
+        /// TRUE: The Hold control command is taken into account in state Idle
+        Idle : BOOL;
+        /// TRUE: The Hold control command is taken into account in state Suspended
+        Suspended : BOOL;
+        /// TRUE: The Hold control command is taken into account in state Execute
+        Execute : BOOL;
+        /// TRUE: The Hold control command is taken into account in state Unholding
+        Unholding : BOOL;
+        /// TRUE: The Hold control command is taken into account in state Suspending
+        Suspending : BOOL;
+        /// TRUE: The Hold control command is taken into account in state Unsuspending
+        Unsuspending : BOOL;
+        /// TRUE: The Hold control command is taken into account in state Completing
+        Completing : BOOL;
+        /// TRUE: The Hold control command is taken into account in state Completed
+        Completed : BOOL;
     END_VAR
 
     VAR_OUTPUT
+        /// Hold control command configuration for all unit modes for direct connection
+        /// with the input config.holdCmdCfg of the desired UnitModeStateManager instance
         holdCmdCfg : DWORD;
     END_VAR
 

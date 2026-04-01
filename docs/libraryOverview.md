@@ -46,7 +46,7 @@ Within the OMAC Packaging Working Group, the PackML working group is involved wi
 
 The major part of the guidelines describes the OMAC mode management (unit mode manager and state machine), see _ISA Technical Report TR88.00.02 Machine and Unit States_.
 
-In addition the PackML [pack tags](./constants/LPMVL2022_PackTagsConstants.md) are listed which are used as standardized variable structures (pack tags) for the cross-machine coupling between machine controllers and to higher-level HMI, MES or Enterprise systems, see also _ISA Technical Report TR88.00.02 Machine and Unit States_.
+In addition the PackML [pack tags](./constants/LPMLV2022_PackTagsConstants.md) are listed which are used as standardized variable structures (pack tags) for the cross-machine coupling between machine controllers and to higher-level HMI, MES or Enterprise systems, see also _ISA Technical Report TR88.00.02 Machine and Unit States_.
 
 There exist the following variable structures for the pack tags:
 
@@ -76,18 +76,18 @@ Exmaple of a state machine for the _Maintenance_ mode
 
 ## Unit Modes
 
-| Number | UnitMode |  Description |
-|--------|----------|--------------|
+| Number | UnitMode | &nbsp; Description |
+| -------- | ---------- | -------------- |
 | 0 | Invalid | Not a valid unit mode |
 | 1 | Production | This represents the mode which is utilized for routine production. The machine executes relevant logic in response to commands which are either entered directly by the operator or issued by another supervisory system. |
 | 2 | Maintenance | This mode may allow suitably authorized personnel the ability to run an individual machine independent of other machines in a production line. This mode would typically be used for fault finding, machine trials or testing operational improvements. This mode would also allow the speed of the machine to be adjusted (where this feature is available). |
 | 3 | Manual | This provides direct control of individual machine modules. This feature is available depending upon the mechanical constraints of the mechanisms being exercised. This feature may be used for the commissioning of individual drives, verifying the operation of synchronized drives, testing the drive as a result of modifying parameters etc. |
-| 4-31 | UserMode01 .. UserMode28 |The requirements for user-defined unit modes differ depending on the machine and application. A typical user-defined unit mode is, for example, a cleaning mode. |
+| 4-31 | UserMode01 .. UserMode28 | The requirements for user-defined unit modes differ depending on the machine and application. A typical user-defined unit mode is, for example, a cleaning mode. |
 
 ## States
 
 | Number | State | Description |
-|--------|-------|-------------|
+| -------- | ------- | ------------- |
 | 0 | Undefined | Not a valid state. |
 | 1 | Clearing | **State Type: Acting**<br>Initiated by a Clear command to clear faults that may have occurred and are present in the Aborted state before proceeding to a Stopped state. |
 | 2 | Stopped | **State Type: Wait**<br>The machine is powered and stationary after completing the Stopping state. All communications with other systems are functioning (if applicable). A Reset command will cause a transition from Stopped to the Resetting state. |
@@ -110,18 +110,18 @@ Exmaple of a state machine for the _Maintenance_ mode
 ## Control commands
 
 | Number | Description |
-|--------|-------------|
-|0 | Undefined |
-|1 | Reset |
-|2 | Start |
-|3 | Stop |
-|4 | Hold |
-|5 | Unhold |
-|6 | Suspend |
-|7 | Unsuspend |
-|8 | Abort |
-|9 | Clear |
-|10 | Complete |
+| -------- | ------------- |
+| 0 | Undefined |
+| 1 | Reset |
+| 2 | Start |
+| 3 | Stop |
+| 4 | Hold |
+| 5 | Unhold |
+| 6 | Suspend |
+| 7 | Unsuspend |
+| 8 | Abort |
+| 9 | Clear |
+| 10 | Complete |
 
 ## Unit mode transitions
 
@@ -135,26 +135,26 @@ Changing the unit mode is permitted in any state and can be configured in the co
 
 The following table shows the state transitions with command priorities. Commands further to the right have higher priority for state changes.
 
-|  |  |  |  | **State Commands** |  |  |  |  |  |  | **State**<br>**Complete** |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| **Current State** | **Start** | **Reset¹** | **Hold** | **Unhold** | **Suspend** | **Unsuspend** | **Complete** | **Clear¹** | **Stop²** | **Abort²** |  |
-| **IDLE** | STARTING |  |  |  |  |  |  |  | STOPPING | ABORTING |  |
-| **STARTING** |  |  |  |  |  |  |  |  | STOPPING | ABORTING | EXECUTE |
-| **EXECUTE** |  |  | HOLDING |  | SUSPENDING |  | COMPLETING |  | STOPPING | ABORTING |  |
-| **COMPLETING** |  |  |  |  |  |  |  |  | STOPPING | ABORTING | COMPLETED |
-| **COMPLETED** |  | RESETTING |  |  |  |  |  |  | STOPPING | ABORTING |  |
-| **RESETTING** |  |  |  |  |  |  |  |  | STOPPING | ABORTING | IDLE |
-| **HOLDING** |  |  |  |  |  |  |  |  | STOPPING | ABORTING | HELD |
-| **HELD** |  |  |  | UNHOLDING |  |  | COMPLETING |  | STOPPING | ABORTING |  |
-| **UNHOLDING** |  |  |  |  |  |  |  |  | STOPPING | ABORTING | EXECUTE |
-| **SUSPENDING** |  |  |  |  |  |  |  |  | STOPPING | ABORTING | SUSPENDED |
-| **SUSPENDED** |  |  | HOLDING |  |  | UNSUSPENDING | COMPLETING |  | STOPPING | ABORTING |  |
-| **UNSUSPENDING** |  |  |  |  |  |  |  |  | STOPPING | ABORTING | EXECUTE |
-| **STOPPING** |  |  |  |  |  |  |  |  |  | ABORTING | STOPPED |
-| **STOPPED** |  | RESETTING |  |  |  |  |  |  |  | ABORTING |  |
-| **ABORTING** |  |  |  |  |  |  |  |  |  |  | ABORTED |
-| **ABORTED** |  |  |  |  |  |  |  | CLEARING |  |  |  |
-| **CLEARING** |  |  |  |  |  |  |  |  |  | ABORTING | STOPPED |
+| &nbsp; | &nbsp; | &nbsp; | &nbsp; | **State Commands** | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | **State**<br>**Complete** |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **Current State** | **Start** | **Reset¹** | **Hold** | **Unhold** | **Suspend** | **Unsuspend** | **Complete** | **Clear¹** | **Stop²** | **Abort²** | &nbsp; |
+| **IDLE** | STARTING | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | STOPPING | ABORTING | &nbsp; |
+| **STARTING** | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | STOPPING | ABORTING | EXECUTE |
+| **EXECUTE** | &nbsp; | &nbsp; | HOLDING | &nbsp; | SUSPENDING | &nbsp; | COMPLETING | &nbsp; | STOPPING | ABORTING | &nbsp; |
+| **COMPLETING** | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | STOPPING | ABORTING | COMPLETED |
+| **COMPLETED** | &nbsp; | RESETTING | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | STOPPING | ABORTING | &nbsp; |
+| **RESETTING** | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | STOPPING | ABORTING | IDLE |
+| **HOLDING** | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | STOPPING | ABORTING | HELD |
+| **HELD** | &nbsp; | &nbsp; | &nbsp; | UNHOLDING | &nbsp; | &nbsp; | COMPLETING | &nbsp; | STOPPING | ABORTING | &nbsp; |
+| **UNHOLDING** | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | STOPPING | ABORTING | EXECUTE |
+| **SUSPENDING** | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | STOPPING | ABORTING | SUSPENDED |
+| **SUSPENDED** | &nbsp; | &nbsp; | HOLDING | &nbsp; | &nbsp; | UNSUSPENDING | COMPLETING | &nbsp; | STOPPING | ABORTING | &nbsp; |
+| **UNSUSPENDING** | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | STOPPING | ABORTING | EXECUTE |
+| **STOPPING** | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | ABORTING | STOPPED |
+| **STOPPED** | &nbsp; | RESETTING | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | ABORTING | &nbsp; |
+| **ABORTING** | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | ABORTED |
+| **ABORTED** | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | CLEARING | &nbsp; | &nbsp; | &nbsp; |
+| **CLEARING** | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | ABORTING | STOPPED |
 
 **Notes:**
 

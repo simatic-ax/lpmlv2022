@@ -1,24 +1,24 @@
 NAMESPACE Simatic.Ax.LPMLV2022
 
-TYPE
-LPMLV2022_typeStatesInCurrentMode  : Struct   // Copied from configuration
-         clearing  : Bool;
-         stopped  : Bool;
-         starting  : Bool;
-         idle  : Bool;
-         suspended  : Bool;
-         execute  : Bool;
-         stopping  : Bool;
-         aborting  : Bool;
-         aborted  : Bool;
-         holding  : Bool;
-         held  : Bool;
-         unholding  : Bool;
-         suspending  : Bool;
-         unsuspending  : Bool;
-         resetting  : Bool;
-         completing  : Bool;
-         completed  : Bool;
-      END_STRUCT;
+    TYPE
+        typeStatesInCurrentMode  : STRUCT   // Copied from configuration
+            clearing  : BOOL;
+            stopped  : BOOL;
+            starting  : BOOL;
+            idle  : BOOL;
+            suspended  : BOOL;
+            execute  : BOOL;
+            stopping  : BOOL;
+            aborting  : BOOL;
+            aborted  : BOOL;
+            holding  : BOOL;
+            held  : BOOL;
+            unholding  : BOOL;
+            suspending  : BOOL;
+            unsuspending  : BOOL;
+            resetting  : BOOL;
+            completing  : BOOL;
+            completed  : BOOL;
+        END_STRUCT;
     END_TYPE
 END_NAMESPACE
