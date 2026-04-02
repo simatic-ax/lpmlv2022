@@ -38,6 +38,21 @@ Add the namespace in your ST code:
 USING Simatic.Ax.LPMLV2022;
 ```
 
+More details on how to use the library can be found on the dedicated [Getting Started](./docs/examples.md) page.
+
+### Source Code Integration
+
+#### Compiled package vs. source code
+
+When installed via `apax add`, the library is delivered as a **compiled binary package**.
+
+However, certain customizations require modifying the library source code directly. This includes:
+
+- Adjusting array sizes defined in `LimitConstants` (e.g. diagnostics buffer depth, number of tracked modes/states)
+- Extending or modifying the state machine behavior
+
+For these cases, the full source code is available in this GitHub repository.
+
 ## Library functionality
 
 Comprehensive documentation is available in the [docs](./docs) directory:
