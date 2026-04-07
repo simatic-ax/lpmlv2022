@@ -1,14 +1,21 @@
 NAMESPACE Simatic.Ax.LPMLV2022
-    TYPE 
+    TYPE
         {S7.extern = ReadOnly}
-        LPMLV2022_typeDiagnosticsEntry : STRUCT
-            timestamp : DTL; // Timestamp for this entry
-            UnitModeCurrent : SINT; // Current unit mode
-            StateCurrent : SINT; // Current state
-            UnitMode : SINT; // Requested unit mode
-            CntrlCmd : SINT; // Request control command
-            SC : BOOL; // State complete signal
-            message : BYTE; // Message for this entry
+        typeDiagnosticsEntry : STRUCT
+            /// Timestamp for this entry
+            timestamp : DTL;
+            /// Current unit mode
+            UnitModeCurrent : SINT;
+            /// Current state
+            StateCurrent : SINT;
+            /// Requested unit mode
+            UnitMode : SINT;
+            /// Request control command
+            CntrlCmd : SINT;
+            /// State complete signal
+            SC : BOOL;
+            /// Message for this entry
+            message : Message;
         END_STRUCT;
     END_TYPE
 END_NAMESPACE

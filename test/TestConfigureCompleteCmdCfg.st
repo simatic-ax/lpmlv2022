@@ -12,7 +12,7 @@ NAMESPACE Simatic.Ax.LPMLV2022.Tests
                 result : DWORD;
             END_VAR
 
-            LPMLV2022_ConfigureCompleteCmdCfg(
+            ConfigureCompleteCmdCfg(
                 Suspended := TRUE,
                 Execute := FALSE,
                 Held := FALSE,
@@ -23,7 +23,7 @@ NAMESPACE Simatic.Ax.LPMLV2022.Tests
             Assert.Equal(actual := result.%X11, expected := FALSE);
             // Verify expected DWORD value (bit 5 set = 2^5 = 32 = 16#20)
             Assert.Equal(actual := result, expected := DWORD#16#0000_0020);
-        
+
         END_METHOD
 
         {Test}
@@ -32,7 +32,7 @@ NAMESPACE Simatic.Ax.LPMLV2022.Tests
                 result : DWORD;
             END_VAR
 
-            LPMLV2022_ConfigureCompleteCmdCfg(
+            ConfigureCompleteCmdCfg(
                 Suspended := FALSE,
                 Execute := TRUE,
                 Held := FALSE,
@@ -43,7 +43,7 @@ NAMESPACE Simatic.Ax.LPMLV2022.Tests
             Assert.Equal(actual := result.%X11, expected := FALSE);
             // Verify expected DWORD value (bit 6 set = 2^6 = 64 = 16#40)
             Assert.Equal(actual := result, expected := DWORD#16#0000_0040);
-        
+
         END_METHOD
 
         {Test}
@@ -52,7 +52,7 @@ NAMESPACE Simatic.Ax.LPMLV2022.Tests
                 result : DWORD;
             END_VAR
 
-            LPMLV2022_ConfigureCompleteCmdCfg(
+            ConfigureCompleteCmdCfg(
                 Suspended := FALSE,
                 Execute := FALSE,
                 Held := TRUE,
@@ -63,7 +63,7 @@ NAMESPACE Simatic.Ax.LPMLV2022.Tests
             Assert.Equal(actual := result.%X11, expected := TRUE);
             // Verify expected DWORD value (bit 11 set = 2^11 = 2048 = 16#800)
             Assert.Equal(actual := result, expected := DWORD#16#0000_0800);
-        
+
         END_METHOD
 
         {Test}
@@ -72,7 +72,7 @@ NAMESPACE Simatic.Ax.LPMLV2022.Tests
                 result : DWORD;
             END_VAR
 
-            LPMLV2022_ConfigureCompleteCmdCfg(
+            ConfigureCompleteCmdCfg(
                 Suspended := TRUE,
                 Execute := TRUE,
                 Held := FALSE,
@@ -83,7 +83,7 @@ NAMESPACE Simatic.Ax.LPMLV2022.Tests
             Assert.Equal(actual := result.%X11, expected := FALSE);
             // Verify expected DWORD value (bits 5+6 set = 32+64 = 96 = 16#60)
             Assert.Equal(actual := result, expected := DWORD#16#0000_0060);
-        
+
         END_METHOD
 
         {Test}
@@ -92,7 +92,7 @@ NAMESPACE Simatic.Ax.LPMLV2022.Tests
                 result : DWORD;
             END_VAR
 
-            LPMLV2022_ConfigureCompleteCmdCfg(
+            ConfigureCompleteCmdCfg(
                 Suspended := TRUE,
                 Execute := FALSE,
                 Held := TRUE,
@@ -103,7 +103,7 @@ NAMESPACE Simatic.Ax.LPMLV2022.Tests
             Assert.Equal(actual := result.%X11, expected := TRUE);
             // Verify expected DWORD value (bits 5+11 set = 32+2048 = 2080 = 16#820)
             Assert.Equal(actual := result, expected := DWORD#16#0000_0820);
-        
+
         END_METHOD
 
         {Test}
@@ -112,7 +112,7 @@ NAMESPACE Simatic.Ax.LPMLV2022.Tests
                 result : DWORD;
             END_VAR
 
-            LPMLV2022_ConfigureCompleteCmdCfg(
+            ConfigureCompleteCmdCfg(
                 Suspended := FALSE,
                 Execute := TRUE,
                 Held := TRUE,
@@ -123,7 +123,7 @@ NAMESPACE Simatic.Ax.LPMLV2022.Tests
             Assert.Equal(actual := result.%X11, expected := TRUE);
             // Verify expected DWORD value (bits 6+11 set = 64+2048 = 2112 = 16#840)
             Assert.Equal(actual := result, expected := DWORD#16#0000_0840);
-        
+
         END_METHOD
 
         {Test}
@@ -132,7 +132,7 @@ NAMESPACE Simatic.Ax.LPMLV2022.Tests
                 result : DWORD;
             END_VAR
 
-            LPMLV2022_ConfigureCompleteCmdCfg(
+            ConfigureCompleteCmdCfg(
                 Suspended := TRUE,
                 Execute := TRUE,
                 Held := TRUE,
@@ -143,7 +143,7 @@ NAMESPACE Simatic.Ax.LPMLV2022.Tests
             Assert.Equal(actual := result.%X11, expected := TRUE);
             // Verify expected DWORD value (bits 5+6+11 set = 32+64+2048 = 2144 = 16#860)
             Assert.Equal(actual := result, expected := DWORD#16#0000_0860);
-        
+
         END_METHOD
 
         {Test}
@@ -152,7 +152,7 @@ NAMESPACE Simatic.Ax.LPMLV2022.Tests
                 result : DWORD;
             END_VAR
 
-            LPMLV2022_ConfigureCompleteCmdCfg(
+            ConfigureCompleteCmdCfg(
                 Suspended := FALSE,
                 Execute := FALSE,
                 Held := FALSE,
@@ -163,7 +163,7 @@ NAMESPACE Simatic.Ax.LPMLV2022.Tests
             Assert.Equal(actual := result.%X11, expected := FALSE);
             // Verify expected DWORD value (no bits set = 0)
             Assert.Equal(actual := result, expected := DWORD#16#0000_0000);
-        
+
         END_METHOD
 
         {Test}
@@ -173,7 +173,7 @@ NAMESPACE Simatic.Ax.LPMLV2022.Tests
                 i : INT;
             END_VAR
 
-            LPMLV2022_ConfigureCompleteCmdCfg(
+            ConfigureCompleteCmdCfg(
                 Suspended := TRUE,
                 Execute := TRUE,
                 Held := TRUE,
@@ -208,7 +208,7 @@ NAMESPACE Simatic.Ax.LPMLV2022.Tests
                     END_CASE;
                 END_IF;
             END_FOR;
-        
+
         END_METHOD
     END_CLASS
 

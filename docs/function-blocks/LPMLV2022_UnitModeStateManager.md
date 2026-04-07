@@ -1,12 +1,12 @@
-# LPMLV2022_UnitModeStateManager
+# UnitModeStateManager
 
 ## Principle of operation
 
-The function block `LPMLV2022_UnitModeStateManager` is the main part of the block library LPMLV2022 and manages the transitions between the unit modes and states according to the OMAC PackML standard.
+The function block `UnitModeStateManager` is the main part of the block library LPMLV2022 and manages the transitions between the unit modes and states according to the OMAC PackML standard.
 
 > NOTE
 >
-> If a boolean interface is preferred, then the block `LPMLV2022_UnitModeStateManagerBool` should be used instead of this block.
+> If a BOOLean interface is preferred, then the block `UnitModeStateManagerBool` should be used instead of this block.
 >
 
 ## Function characteristics
@@ -50,43 +50,25 @@ set to TRUE, the control command
 ### Input Parameters
 
 | Parameter | Type | Description |
-|-----------|------|-------------|
-| UnitMode | DInt |  Requested unit mode |
-| UnitModeChangeRequest | Bool | TRUE: Request unit mode |
-| CntrlCmd | DInt | Request control command |
-| CmdChangeRequest | Bool | TRUE: Enable change into requested state |
-| SC | Bool | State change from FALSE to TRUE (rising edge) triggers state complete signal |
-| config | `LPMLV2022_typeConfiguration` | onfiguration (is taken into account in first call after STOP/RUN) |
+| ---------- | ----- | ------------ |
+| UnitMode | Mode | Requested unit mode |
+| UnitModeChangeRequest | BOOL | TRUE: Request unit mode |
+| CntrlCmd | Command | Request control command |
+| CmdChangeRequest | BOOL | TRUE: Enable change into requested state |
+| SC | BOOL | State change from FALSE to TRUE (rising edge) triggers state complete signal |
+| config | `typeConfiguration` | FB configuration (is taken into account in first call after STOP/RUN) |
 
 ### Output Parameters
 
 | Parameter | Type | Description |
-|-----------|------|-------------|
-| UnitModeCurrent |   DInt | Current unit mode |
-| StateCurrent |   DInt | Current state |
-| StateRequested |   DInt | Requested state |
-| StateChangeInProcess |   Bool | State change in process |
-| CurDisabledStates |   DWord | Disabled states in current unit mode |
-| curHoldCmdCfg |   DWord | Bit locations within the DWORD represent State numbers. A value of 1 in a bit location indicates that the Hold control command is taken into account in the corresponding state |
-| curCompleteCmdCfg |   DWord | Bit locations within the DWORD represent State numbers. A value of 1 in a bit location indicates that the Complete control command is taken into account in the corresponding state |
-| unitModeChangeNotAllowed |   Bool | TRUE: Requested unit mode change is not allowed (output is reset with the next successful unit mode change or if input 'UnitMode' is set to 0 or if input `UnitModeChangeRequest` is set to FALSE) |
-| cntrlCmdNotAllowed |   Bool | TRUE: Control command is not allowed (output is reset with the next successful `CntrlCmd` or if input `CntrlCmd` is set to 0 or if input `CmdChangeRequest` is set to FALSE) |
-| diagnostics |   `LPMLV2022_typeDiagnostics` | Diagnostics information |
-
-### Status and error codes
-
-| Status | Meaning | Remedy / notes |
-|-----------|------|-------------|
-| BYTE#16#00 | MSG_NO_MESSAGE |  Initial value |
-| BYTE#16#01 | MSG_MODE_CHANGED_SUCCESSFULLY |  Unit mode changed successfully |
-| BYTE#16#02 | MSG_STATE_CHANGED_SUCCESSFULLY |  State changed successfully |
-| BYTE#16#03 | MSG_MODE_ALREADY_ACTIVE |  Requested unit mode already active |
-| BYTE#16#80 | MSG_MODE_NOT_DEFINED |  Unit mode not defined |
-| BYTE#16#81 | MSG_CMD_NOT_DEFINED |  Control command not defined |
-| BYTE#16#82 | MSG_REQ_MODE_NOT_CONFIGURED |  Requested unit mode not configured - check `config.EnabledModesCfg` |
-| BYTE#16#83 | MSG_MODE_TRANSITION_NOT_ALLOWED |  Unit mode transition in this state not allowed - check `config.ModeTransitionCfg[]` of the current mode and the requested mode. The corresponding state bit must be set for both modes |
-| BYTE#16#84 | MSG_CMD_NOT_ALLOWED |  Control command in this state not allowed |
-| BYTE#16#85 | MSG_SC_NOT_ALLOWED |  `SC` in this state not allowed |
-| BYTE#16#86 | MSG_STATE_CONFIG_FORCED |  State configuration forced to OMAC standard (corrected configuration -> see output `CurDisabledStates`) |
-| BYTE#16#87 | MSG_MODE_TRANSITION_NOT_POSSIBLE |  Unit mode transition in this state not possible, because the current state is not available in the requested mode - check `config.DisabledStatesCfg[]` of the requested mode |
-| BYTE#16#88 | MSG_SC_OVERRIDDEN_BY_CMD_HOLD |  `SC` overridden by control command Hold |
+| ---------- | ----- | ------------ |
+| UnitModeCurrent | Mode | Current unit mode |
+| StateCurrent | State | Current state |
+| StateRequested | State | Requested state |
+| StateChangeInProcess | BOOL | State change in process |
+| CurDisabledStates | DWORD | Disabled states in current unit mode |
+| curHoldCmdCfg | DWORD | Bit locations within the DWORD represent State numbers. A value of 1 in a bit location indicates that the Hold control command is taken into account in the corresponding state |
+| curCompleteCmdCfg | DWORD | Bit locations within the DWORD represent State numbers. A value of 1 in a bit location indicates that the Complete control command is taken into account in the corresponding state |
+| unitModeChangeNotAllowed | BOOL | TRUE: Requested unit mode change is not allowed (output is reset with the next successful unit mode change or if input 'UnitMode' is set to 0 or if input `UnitModeChangeRequest` is set to FALSE) |
+| cntrlCmdNotAllowed | BOOL | TRUE: Control command is not allowed (output is reset with the next successful `CntrlCmd` or if input `CntrlCmd` is set to 0 or if input `CmdChangeRequest` is set to FALSE) |
+| diagnostics | `typeDiagnostics` | Diagnostics information |

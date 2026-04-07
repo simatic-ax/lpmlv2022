@@ -10,24 +10,39 @@ NAMESPACE Simatic.Ax.LPMLV2022
 /// Functionality: The function generates a DWord value which represents
 ///                the state configuration for one unit mode.
 ///================================================================================
-FUNCTION LPMLV2022_ConfigureDisabledStatesCfg
+FUNCTION ConfigureDisabledStatesCfg
     VAR_INPUT
-        Clearing : BOOL; // TRUE: Disable state Clearing
-        Starting : BOOL; // TRUE: Disable state Starting
-        Suspended : BOOL; // TRUE: Disable state Suspended
-        Stopping : BOOL; // TRUE: Disable state Stopping
-        Aborting : BOOL; // TRUE: Disable state Aborting
-        Holding : BOOL; // TRUE: Disable state Holding
-        Held : BOOL; // TRUE: Disable state Held
-        Unholding : BOOL; // TRUE: Disable state Unholding
-        Suspending : BOOL; // TRUE: Disable state Suspending
-        Unsuspending : BOOL; // TRUE: Disable state Unsuspending
-        Resetting : BOOL; // TRUE: Disable state Resetting
-        Completing : BOOL; // TRUE: Disable state Completing
-        Completed : BOOL; // TRUE: Disable state Completed
+        /// TRUE: Disable state Clearing
+        Clearing : BOOL;
+        /// TRUE: Disable state Starting
+        Starting : BOOL;
+        /// TRUE: Disable state Suspended
+        Suspended : BOOL;
+        /// TRUE: Disable state Stopping
+        Stopping : BOOL;
+        /// TRUE: Disable state Aborting
+        Aborting : BOOL;
+        /// TRUE: Disable state Holding
+        Holding : BOOL;
+        /// TRUE: Disable state Held
+        Held : BOOL;
+        /// TRUE: Disable state Unholding
+        Unholding : BOOL;
+        /// TRUE: Disable state Suspending
+        Suspending : BOOL;
+        /// TRUE: Disable state Unsuspending
+        Unsuspending : BOOL;
+        /// TRUE: Disable state Resetting
+        Resetting : BOOL;
+        /// TRUE: Disable state Completing
+        Completing : BOOL;
+        /// TRUE: Disable state Completed
+        Completed : BOOL;
     END_VAR
 
     VAR_OUTPUT
+        /// Disabled states configuration for one unit mode for direct connection with the input
+        /// config.DisabledStatesCfg[<unit mode>] of the desired UnitModeStateManager instance.
         DisabledStatesCfg : DWORD;
     END_VAR
 

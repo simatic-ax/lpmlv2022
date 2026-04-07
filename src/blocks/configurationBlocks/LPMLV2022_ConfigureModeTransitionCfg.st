@@ -10,28 +10,47 @@ NAMESPACE Simatic.Ax.LPMLV2022
 /// Functionality: The function generates a DWord value which represents
 ///                the state configuration for one unit mode.
 ///================================================================================
-FUNCTION LPMLV2022_ConfigureModeTransitionCfg
+FUNCTION ConfigureModeTransitionCfg
     VAR_INPUT
-        Clearing : BOOL; // TRUE: Allow a mode transition to/from state Clearing
-        Stopped : BOOL; // TRUE: Allow a mode transition to/from state Stopped
-        Starting : BOOL; // TRUE: Allow a mode transition to/from state Starting
-        Idle : BOOL; // TRUE: Allow a mode transition to/from state Idle
-        Suspended : BOOL; // TRUE: Allow a mode transition to/from state Suspended
-        Execute : BOOL; // TRUE: Allow a mode transition to/from state Execute
-        Stopping : BOOL; // TRUE: Allow a mode transition to/from state Stopping
-        Aborting : BOOL; // TRUE: Allow a mode transition to/from state Aborting
-        Aborted : BOOL; // TRUE: Allow a mode transition to/from state Aborted
-        Holding : BOOL; // TRUE: Allow a mode transition to/from state Holding
-        Held : BOOL; // TRUE: Allow a mode transition to/from state Held
-        Unholding : BOOL; // TRUE: Allow a mode transition to/from state Unholding
-        Suspending : BOOL; // TRUE: Allow a mode transition to/from state Suspending
-        Unsuspending : BOOL; // TRUE: Allow a mode transition to/from state Unsuspending
-        Resetting : BOOL; // TRUE: Allow a mode transition to/from state Resetting
-        Completing : BOOL; // TRUE: Allow a mode transition to/from state Completing
-        Completed : BOOL; // TRUE: Allow a mode transition to/from state Completed
+        /// TRUE: Allow a mode transition to/from state Clearing
+        Clearing : BOOL;
+        /// TRUE: Allow a mode transition to/from state Stopped
+        Stopped : BOOL;
+        /// TRUE: Allow a mode transition to/from state Starting
+        Starting : BOOL;
+        /// TRUE: Allow a mode transition to/from state Idle
+        Idle : BOOL;
+        /// TRUE: Allow a mode transition to/from state Suspended
+        Suspended : BOOL;
+        /// TRUE: Allow a mode transition to/from state Execute
+        Execute : BOOL;
+        /// TRUE: Allow a mode transition to/from state Stopping
+        Stopping : BOOL;
+        /// TRUE: Allow a mode transition to/from state Aborting
+        Aborting : BOOL;
+        /// TRUE: Allow a mode transition to/from state Aborted
+        Aborted : BOOL;
+        /// TRUE: Allow a mode transition to/from state Holding
+        Holding : BOOL;
+        /// TRUE: Allow a mode transition to/from state Held
+        Held : BOOL;
+        /// TRUE: Allow a mode transition to/from state Unholding
+        Unholding : BOOL;
+        /// TRUE: Allow a mode transition to/from state Suspending
+        Suspending : BOOL;
+        /// TRUE: Allow a mode transition to/from state Unsuspending
+        Unsuspending : BOOL;
+        /// TRUE: Allow a mode transition to/from state Resetting
+        Resetting : BOOL;
+        /// TRUE: Allow a mode transition to/from state Completing
+        Completing : BOOL;
+        /// TRUE: Allow a mode transition to/from state Completed
+        Completed : BOOL;
     END_VAR
 
     VAR_OUTPUT
+        /// Mode Transition Configuration for one unit mode for direct connection with the input
+        /// config.ModeTransitionCfg[<unit mode>] of the desired UnitModeStateManager instance
         ModeTransitionCfg : DWORD;
     END_VAR
 

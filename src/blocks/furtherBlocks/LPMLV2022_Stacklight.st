@@ -9,28 +9,43 @@ NAMESPACE Simatic.Ax.LPMLV2022
 /// Requirements: S7-1500 FW 2.6
 /// Functionality: Stacklight status according to ANSI/ISA-TR88.00.02-2022
 ///================================================================================
-FUNCTION_BLOCK LPMLV2022_Stacklight
+FUNCTION_BLOCK Stacklight
     {S7.extern = ReadWrite}
     VAR_INPUT
-        StateCurrent : DINT := LPMLV2022_StateConstants#STATE_UNDEFINED; // Current state
-        starvedUpstream : BOOL; // TRUE: upstream system is not able to supply products
-        blockedDownstream : BOOL; // TRUE: downstream system is not able to accept products
-        materialLow : BOOL; // TRUE: low material
-        materialExhausted : BOOL; // TRUE: material exhausted
+        /// Current state
+        StateCurrent : State := State#UNDEFINED;
+        /// TRUE: upstream system is not able to supply products
+        starvedUpstream : BOOL;
+        /// TRUE: downstream system is not able to accept products
+        blockedDownstream : BOOL;
+        /// TRUE: low material
+        materialLow : BOOL;
+        /// TRUE: material exhausted
+        materialExhausted : BOOL;
     END_VAR
-    
+
     {S7.extern = ReadOnly}
     VAR_OUTPUT
-        Stacklight : DWORD; // Indicator for the current stacklight status -> PackTags
-        redSolid : BOOL; // Status of stacklight bit 0
-        redFlashing : BOOL; // Status of stacklight bit 1
-        amberSolid : BOOL; // Status of stacklight bit 2
-        amberFlashing : BOOL; // Status of stacklight bit 3
-        blueSolid : BOOL; // Status of stacklight bit 4
-        blueFlashing : BOOL; // Status of stacklight bit 5
-        greenSolid : BOOL; // Status of stacklight bit 6
-        greenFlashing : BOOL; // Status of stacklight bit 7
-        hornFlashing : BOOL; // Status of stacklight bit 9
+        /// Indicator for the current stacklight status -> PackTags
+        StacklightStatus : DWORD;
+        /// Status of stacklight bit 0
+        redSolid : BOOL;
+        /// Status of stacklight bit 1
+        redFlashing : BOOL;
+        /// Status of stacklight bit 2
+        amberSolid : BOOL;
+        /// Status of stacklight bit 3
+        amberFlashing : BOOL;
+        /// Status of stacklight bit 4
+        blueSolid : BOOL;
+        /// Status of stacklight bit 5
+        blueFlashing : BOOL;
+        /// Status of stacklight bit 6
+        greenSolid : BOOL;
+        /// Status of stacklight bit 7
+        greenFlashing : BOOL;
+        /// Status of stacklight bit 9
+        hornFlashing : BOOL;
     END_VAR
 
     VAR_TEMP
@@ -73,101 +88,101 @@ FUNCTION_BLOCK LPMLV2022_Stacklight
     // The temporary variables are automatically set to FALSE, because the "Optimized block access" attribute is set
 
     CASE StateCurrent OF
-        LPMLV2022_StateConstants#STATE_EXECUTE:
+        State#EXECUTE:
             tempBlueFlashing := materialLow;
             tempGreenSolid := TRUE;
 
-        LPMLV2022_StateConstants#STATE_COMPLETING:
+        State#COMPLETING:
             tempBlueFlashing := materialLow;
             tempGreenSolid := TRUE;
 
-        LPMLV2022_StateConstants#STATE_COMPLETED:
+        State#COMPLETED:
             tempRedSolid := TRUE;
             tempBlueFlashing := materialLow;
 
-        LPMLV2022_StateConstants#STATE_RESETTING:
+        State#RESETTING:
             tempRedSolid := TRUE;
             tempBlueFlashing := materialLow;
 
-        LPMLV2022_StateConstants#STATE_IDLE:
+        State#IDLE:
             tempBlueFlashing := materialLow;
             tempGreenFlashing := TRUE;
 
-        LPMLV2022_StateConstants#STATE_STARTING:
+        State#STARTING:
             tempBlueFlashing := materialLow;
             tempGreenSolid := TRUE;
             tempHornFlashing := TRUE;
 
-        LPMLV2022_StateConstants#STATE_UNHOLDING:
+        State#UNHOLDING:
             tempBlueFlashing := materialLow;
             tempGreenSolid := TRUE;
             tempHornFlashing := TRUE;
 
-        LPMLV2022_StateConstants#STATE_UNSUSPENDING:
+        State#UNSUSPENDING:
             tempBlueFlashing := materialLow;
             tempGreenSolid := TRUE;
             tempHornFlashing := TRUE;
 
-        LPMLV2022_StateConstants#STATE_HOLDING:
+        State#HOLDING:
             tempBlueSolid := materialExhausted;
 
-        LPMLV2022_StateConstants#STATE_HELD:
+        State#HELD:
             tempBlueSolid := materialExhausted;
 
-        LPMLV2022_StateConstants#STATE_SUSPENDING:
+        State#SUSPENDING:
             tempAmberFlashing := starvedUpstream;
             tempAmberSolid := blockedDownstream;
             tempBlueFlashing := materialLow;
 
-        LPMLV2022_StateConstants#STATE_SUSPENDED:
+        State#SUSPENDED:
             tempAmberFlashing := starvedUpstream;
             tempAmberSolid := blockedDownstream;
             tempBlueFlashing := materialLow;
 
-        LPMLV2022_StateConstants#STATE_ABORTING:
+        State#ABORTING:
             tempRedFlashing := TRUE;
             tempBlueFlashing := materialLow;
 
-        LPMLV2022_StateConstants#STATE_ABORTED:
+        State#ABORTED:
             tempRedFlashing := TRUE;
             tempBlueFlashing := materialLow;
 
-        LPMLV2022_StateConstants#STATE_CLEARING:
+        State#CLEARING:
             tempRedFlashing := TRUE;
             tempBlueFlashing := materialLow;
 
-        LPMLV2022_StateConstants#STATE_STOPPING:
+        State#STOPPING:
             tempRedSolid := TRUE;
             tempBlueFlashing := materialLow;
 
-        LPMLV2022_StateConstants#STATE_STOPPED:
+        State#STOPPED:
             tempRedSolid := TRUE;
             tempBlueFlashing := materialLow;
 
-        // ELSE 
+        // ELSE
         //   ; // Reset all outputs
     END_CASE;
 
     // Write outputs
-    Stacklight := DWORD#16#0000_0000;
+    StacklightStatus := DWORD#16#0000_0000;
 
-    Stacklight.%X0 := tempRedSolid;
+    StacklightStatus.%X0 := tempRedSolid;
 	redSolid := tempRedSolid;
-    Stacklight.%X1 := tempRedFlashing;
+    StacklightStatus.%X1 := tempRedFlashing;
 	redFlashing := tempRedFlashing;
-    Stacklight.%X2 := tempAmberSolid;
+    StacklightStatus.%X2 := tempAmberSolid;
 	amberSolid := tempAmberSolid;
-    Stacklight.%X3 := tempAmberFlashing;
+    StacklightStatus.%X3 := tempAmberFlashing;
 	amberFlashing := tempAmberFlashing;
-    Stacklight.%X4 := tempBlueSolid;
+    StacklightStatus.%X4 := tempBlueSolid;
 	blueSolid := tempBlueSolid;
-    Stacklight.%X5 := tempBlueFlashing;
+    StacklightStatus.%X5 := tempBlueFlashing;
 	blueFlashing := tempBlueFlashing;
-    Stacklight.%X6 := tempGreenSolid;
+    StacklightStatus.%X6 := tempGreenSolid;
 	greenSolid := tempGreenSolid;
-    Stacklight.%X7 := tempGreenFlashing;
+    StacklightStatus.%X7 := tempGreenFlashing;
 	greenFlashing := tempGreenFlashing;
-    Stacklight.%X9 := tempHornFlashing;
+    StacklightStatus.%X9 := tempHornFlashing;
 	hornFlashing := tempHornFlashing;
 
 END_FUNCTION_BLOCK

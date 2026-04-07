@@ -35,7 +35,7 @@ jobs:
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
-    steps: 
+    steps:
       - name: Checkout Code
         uses: actions/checkout@v4
         with:
@@ -59,7 +59,7 @@ jobs:
         run: |
           INPUT_VERSION="${{ inputs.version }}"
           SHA_SHORT="${{ github.sha }}"
-          
+
           if [ -z "$INPUT_VERSION" ]; then
             echo "version=0.0.1-${SHA_SHORT}" >> $GITHUB_OUTPUT
           else
@@ -70,18 +70,12 @@ jobs:
         uses: simatic-ax/actions/apax-version@v4
         with:
           version: ${{ steps.determine_version.outputs.version }}
-          
+
       - name: Build source code
         uses: simatic-ax/actions/apax-build@v4
 
       - name: Test source code
         uses: simatic-ax/actions/apax-test@v4
-
-      - name: Check links
-        uses: gaurav-nelson/github-action-markdown-link-check@v1
-        with:
-          check-modified-files-only: 'yes'
-          base-branch: 'main'
 
       - name: Upload build artifacts
         if: ${{ github.event_name == 'workflow_call' || github.event_name == 'release'}}

@@ -1,9 +1,9 @@
 NAMESPACE Simatic.Ax.LPMLV2022
     TYPE
-        LPMLV2022_typeConsiderCompleteCmdIn  : Struct   // Copied from configuration
-        suspended  : Bool;
-        execute  : Bool;
-        held  : Bool;
-     END_STRUCT;
+        typeConsiderCompleteCmdIn  : STRUCT   // Copied from configuration
+            suspended  : BOOL;
+            execute  : BOOL;
+            held  : BOOL;
+        END_STRUCT;
     END_TYPE
 END_NAMESPACE

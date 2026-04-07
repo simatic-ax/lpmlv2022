@@ -9,41 +9,73 @@ NAMESPACE Simatic.Ax.LPMLV2022
 /// Requirements: S7-1500 FW 2.6
 /// Functionality: The function generates the unit mode configuration as DWord.
 ///================================================================================
-FUNCTION LPMLV2022_ConfigureEnabledModesCfg
+FUNCTION ConfigureEnabledModesCfg
     VAR_INPUT
-        ProductionMode : BOOL; // TRUE: Enable unit mode Production
-        MaintenanceMode : BOOL; // TRUE: Enable unit mode Maintenance
-        UserMode01 : BOOL; // TRUE: Enable user-defined unit mode 01
-        UserMode02 : BOOL; // TRUE: Enable user-defined unit mode 02
-        UserMode03 : BOOL; // TRUE: Enable user-defined unit mode 03
-        UserMode04 : BOOL; // TRUE: Enable user-defined unit mode 04
-        UserMode05 : BOOL; // TRUE: Enable user-defined unit mode 05
-        UserMode06 : BOOL; // TRUE: Enable user-defined unit mode 06
-        UserMode07 : BOOL; // TRUE: Enable user-defined unit mode 07
-        UserMode08 : BOOL; // TRUE: Enable user-defined unit mode 08
-        UserMode09 : BOOL; // TRUE: Enable user-defined unit mode 09
-        UserMode10 : BOOL; // TRUE: Enable user-defined unit mode 10
-        UserMode11 : BOOL; // TRUE: Enable user-defined unit mode 11
-        UserMode12 : BOOL; // TRUE: Enable user-defined unit mode 12
-        UserMode13 : BOOL; // TRUE: Enable user-defined unit mode 13
-        UserMode14 : BOOL; // TRUE: Enable user-defined unit mode 14
-        UserMode15 : BOOL; // TRUE: Enable user-defined unit mode 15
-        UserMode16 : BOOL; // TRUE: Enable user-defined unit mode 16
-        UserMode17 : BOOL; // TRUE: Enable user-defined unit mode 17
-        UserMode18 : BOOL; // TRUE: Enable user-defined unit mode 18
-        UserMode19 : BOOL; // TRUE: Enable user-defined unit mode 19
-        UserMode20 : BOOL; // TRUE: Enable user-defined unit mode 20
-        UserMode21 : BOOL; // TRUE: Enable user-defined unit mode 21
-        UserMode22 : BOOL; // TRUE: Enable user-defined unit mode 22
-        UserMode23 : BOOL; // TRUE: Enable user-defined unit mode 23
-        UserMode24 : BOOL; // TRUE: Enable user-defined unit mode 24
-        UserMode25 : BOOL; // TRUE: Enable user-defined unit mode 25
-        UserMode26 : BOOL; // TRUE: Enable user-defined unit mode 26
-        UserMode27 : BOOL; // TRUE: Enable user-defined unit mode 27
-        UserMode28 : BOOL; // TRUE: Enable user-defined unit mode 28
+        /// TRUE: Enable unit mode Production
+        ProductionMode : BOOL;
+        /// TRUE: Enable unit mode Maintenance
+        MaintenanceMode : BOOL;
+        /// TRUE: Enable user-defined unit mode 01
+        UserMode01 : BOOL;
+        /// TRUE: Enable user-defined unit mode 02
+        UserMode02 : BOOL;
+        /// TRUE: Enable user-defined unit mode 03
+        UserMode03 : BOOL;
+        /// TRUE: Enable user-defined unit mode 04
+        UserMode04 : BOOL;
+        /// TRUE: Enable user-defined unit mode 05
+        UserMode05 : BOOL;
+        /// TRUE: Enable user-defined unit mode 06
+        UserMode06 : BOOL;
+        /// TRUE: Enable user-defined unit mode 07
+        UserMode07 : BOOL;
+        /// TRUE: Enable user-defined unit mode 08
+        UserMode08 : BOOL;
+        /// TRUE: Enable user-defined unit mode 09
+        UserMode09 : BOOL;
+        /// TRUE: Enable user-defined unit mode 10
+        UserMode10 : BOOL;
+        /// TRUE: Enable user-defined unit mode 11
+        UserMode11 : BOOL;
+        /// TRUE: Enable user-defined unit mode 12
+        UserMode12 : BOOL;
+        /// TRUE: Enable user-defined unit mode 13
+        UserMode13 : BOOL;
+        /// TRUE: Enable user-defined unit mode 14
+        UserMode14 : BOOL;
+        /// TRUE: Enable user-defined unit mode 15
+        UserMode15 : BOOL;
+        /// TRUE: Enable user-defined unit mode 16
+        UserMode16 : BOOL;
+        /// TRUE: Enable user-defined unit mode 17
+        UserMode17 : BOOL;
+        /// TRUE: Enable user-defined unit mode 18
+        UserMode18 : BOOL;
+        /// TRUE: Enable user-defined unit mode 19
+        UserMode19 : BOOL;
+        /// TRUE: Enable user-defined unit mode 20
+        UserMode20 : BOOL;
+        /// TRUE: Enable user-defined unit mode 21
+        UserMode21 : BOOL;
+        /// TRUE: Enable user-defined unit mode 22
+        UserMode22 : BOOL;
+        /// TRUE: Enable user-defined unit mode 23
+        UserMode23 : BOOL;
+        /// TRUE: Enable user-defined unit mode 24
+        UserMode24 : BOOL;
+        /// TRUE: Enable user-defined unit mode 25
+        UserMode25 : BOOL;
+        /// TRUE: Enable user-defined unit mode 26
+        UserMode26 : BOOL;
+        /// TRUE: Enable user-defined unit mode 27
+        UserMode27 : BOOL;
+        /// TRUE: Enable user-defined unit mode 28
+        UserMode28 : BOOL;
     END_VAR
 
     VAR_OUTPUT
+        /// Enabled unit modes configuration for direct connection with the input config.EnabledModesCfg
+        /// of the desired UnitModeStateManager instance
         EnabledModesCfg : DWORD;
     END_VAR
 

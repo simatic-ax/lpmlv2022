@@ -1,14 +1,14 @@
-# LPMLV2022_ConfigureDisabledStatesCfg
+# ConfigureDisabledStatesCfg
 
 ## Principle of operation
 
-This function allows the user to set the state configuration for every unit mode in the `LPMLV2022_UnitModeStateManager` and the `LPMLV2022_UnitModeStateManagerBool` easily. Of course, it is also possible to set the state configurations directly in the `LPMLV2022_UnitModeStateManager` configuration.
+This function allows the user to set the state configuration for every unit mode in the `UnitModeStateManager` and the `UnitModeStateManagerBool` easily. Of course, it is also possible to set the state configurations directly in the `UnitModeStateManager` configuration.
 
 With the function, the user has to set the associated inputs for the different states to "TRUE", e.g. "Held := TRUE" for disabling the state Held.
 
 The function generates a DWord value which represents the state configuration for one unit mode. This value is bit coded and means that every bit represents a switch where states can be disabled or enabled for a unit mode, e.g. disabling the state _Held_ the bit number 11 has to be set to _TRUE_. As can be seen in the example the state numbers according to the OMAC standard also define the bit numbers in the DWord value. (TODO: LinkToTable)
 
-To write the state configuration from the function output to the according "Unit Mode and State Manager", the output `DisabledStatesCfg` has to be connected to the configuration of the corresponding `LPMLV2022_UnitModeStateManager`.
+To write the state configuration from the function output to the according "Unit Mode and State Manager", the output `DisabledStatesCfg` has to be connected to the configuration of the corresponding `UnitModeStateManager`.
 
 > NOTE
 >
@@ -20,7 +20,7 @@ To write the state configuration from the function output to the according "Unit
 ### Input Parameters
 
 | Parameter | Type | Description |
-|-----------|------|-------------|
+| ---------- | ----- | ------------ |
 | Clearing | `BOOL` | TRUE: Disable state Clearing |
 | Starting | `BOOL` | TRUE: Disable state Starting |
 | Suspended | `BOOL` | TRUE: Disable state Suspended |
@@ -38,5 +38,5 @@ To write the state configuration from the function output to the according "Unit
 ### Output Parameters
 
 | Parameter | Type | Description |
-|-----------|------|-------------|
-| `DisabledStatesCfg` | `DWord` | Disabled states configuration for one unit mode for direct connection with the input `config.DisabledStatesCfg[<unit mode>]` of the desired `LPMLV2022_UnitModeStateManager` instance. Bit locations within the DWORD value represent State numbers |
+| ---------- | ----- | ------------ |
+| `DisabledStatesCfg` | `DWord` | Disabled states configuration for one unit mode for direct connection with the input `config.DisabledStatesCfg[<unit mode>]` of the desired `UnitModeStateManager` instance. Bit locations within the DWORD value represent State numbers |

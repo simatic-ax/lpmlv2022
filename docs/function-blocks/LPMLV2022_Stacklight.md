@@ -1,11 +1,11 @@
-# LPMLV2022_Stacklight
+# Stacklight
 
 ## Principle of operation
 
-The function block `LPMLV2022_Stacklight` can be used to generate the stacklight status information according to ISA TR88.00.02-2022.
+The function block `Stacklight` can be used to generate the stacklight status information according to ISA TR88.00.02-2022.
 
 | Machine Condition | Aborting | Clearing | Aborted | Completed | Stopped | Stopping | Resetting | Idle | Starting | Execute | Completing | Holding | Held (No Product.) | Unholding | Suspending | Suspended | Unsuspending | Lamp Behavior |
-|-------------------|----------|----------|---------|-----------|---------|----------|-----------|------|----------|---------|------------|---------|-------------------|-----------|------------|-----------|--------------|---------------|
+| ------------------ | --------- | --------- | -------- | ---------- | -------- | --------- | ---------- | ----- | --------- | -------- | ----------- | -------- | ------------------ | ---------- | ----------- | ---------- | ------------- | -------------- |
 | Abnormal Stop | F | F | F | | | | | | | | | | | | | | | Red Lamp Flashing |
 | Controlled Stop | | | | S | S | S | S | | | | | | | | | | | Red Lamp Solid |
 | Starved Upstream | | | | | | | | | | | | | | | F | F | | Amber Lamp Flashing |
@@ -26,8 +26,8 @@ The function block `LPMLV2022_Stacklight` can be used to generate the stacklight
 ### Input Parameters
 
 | Parameter | Type | Description |
-|-----------|------|-------------|
-| StateCurrent | DINT |Current state |
+| ---------- | ----- | ------------ |
+| StateCurrent | State | Current state |
 | starvedUpstream | BOOL | TRUE: upstream system is not able to supply products |
 | blockedDownstream | BOOL | TRUE: downstream system is not able to accept products |
 | materialLow | BOOL | TRUE: low material |
@@ -36,8 +36,8 @@ The function block `LPMLV2022_Stacklight` can be used to generate the stacklight
 ### Output Parameters
 
 | Parameter | Type | Description |
-|-----------|------|-------------|
-| Stacklight | DWORD | Indicator for the current stacklight status -> PackTags |
+| ---------- | ----- | ------------ |
+| StacklightStatus | DWORD | Indicator for the current stacklight status -> PackTags |
 | redSolid | BOOL | Status of stacklight bit 0 |
 | redFlashing | BOOL | Status of stacklight bit 1 |
 | amberSolid | BOOL | Status of stacklight bit 2 |
