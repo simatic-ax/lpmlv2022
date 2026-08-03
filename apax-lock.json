@@ -28,55 +28,55 @@
     },
     "@ax/axunitst": {
       "name": "@ax/axunitst",
-      "version": "9.4.8",
-      "integrity": "sha512-W0hx1WWe0U9N4oPEXUBJ3yPRD38v3D7XcffkoMEIAxx+zbLMfK1MCbd/qBEnyTbVgTOsq/nbERDCfqP5CmitLA==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/axunitst/-/axunitst-9.4.8.tgz",
+      "version": "9.6.6",
+      "integrity": "sha512-CIwNNXM0QOzh6szI/9CkWKxX0xTe+mHpgnFJF4vVbusVWv/nqFem9CiRiSw/pglfUHm8c+mvmAF6H2nnCdaSgA==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/axunitst/-/axunitst-9.6.6.tgz",
       "dependencies": {
-        "@ax/axunitst-library": "9.4.8",
-        "@ax/axunitst-test-director": "9.4.8"
+        "@ax/axunitst-library": "9.6.6",
+        "@ax/axunitst-test-director": "9.6.6"
       }
     },
     "@ax/axunitst-analyzer.stc-plugin": {
       "name": "@ax/axunitst-analyzer.stc-plugin",
-      "version": "9.4.8",
-      "integrity": "sha512-qLlj3WjGcmlDUf8a8ybfmv2u45x+sGhm+TzODEnxHwtW+Jyx+7QH5Z9eoL3Eiekg7CmTUyMjBgUuXoCa6Bc+Eg==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/axunitst-analyzer.stc-plugin/-/axunitst-analyzer.stc-plugin-9.4.8.tgz",
+      "version": "9.6.6",
+      "integrity": "sha512-YYBE5VhlqLNz0btvXmsioeKrasm0Fua0HzMmzCvxghPKP1iWBTC9Beofagb8JuOBSlyIgYAWSrtTha8qX+jRRQ==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/axunitst-analyzer.stc-plugin/-/axunitst-analyzer.stc-plugin-9.6.6.tgz",
       "dependencies": {}
     },
     "@ax/axunitst-library": {
       "name": "@ax/axunitst-library",
-      "version": "9.4.8",
-      "integrity": "sha512-XX4atEM+HBVWbGFI9mZfbQmrh3AQvDBaG18bji2Z89gssKf3iLP6VKAMqi2ZyPFSrO+NPzRPwd7WADySta/gCQ==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/axunitst-library/-/axunitst-library-9.4.8.tgz",
+      "version": "9.6.6",
+      "integrity": "sha512-9IbrBfoia+cjgFiPzJy2H4fBv4GSM/Znapsxp1RcTOE4DSIy9qHh9QbLQptjDeSC1vjKpblGGqIa0y54gkov/w==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/axunitst-library/-/axunitst-library-9.6.6.tgz",
       "dependencies": {
         "@ax/system-strings": "^10.0.24"
       }
     },
     "@ax/axunitst-ls-contrib": {
       "name": "@ax/axunitst-ls-contrib",
-      "version": "9.4.8",
-      "integrity": "sha512-J5VPGGJmiDjCGWcJWRo6YzDGG2MYX4nT2lbEZ/xZLzhg+PpT2aJow6pitho6tP4ms9ot5rjdHBMTG7Ds+aRJkg==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/axunitst-ls-contrib/-/axunitst-ls-contrib-9.4.8.tgz",
+      "version": "9.6.6",
+      "integrity": "sha512-qtsIDjzxzV+uDVUcl08a9MfBphZ0xQoa5inbmc4ML/ofTrcL7wZR84N86cfn7VAk5MKCKPEU0gO2MRxfL91S/Q==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/axunitst-ls-contrib/-/axunitst-ls-contrib-9.6.6.tgz",
       "dependencies": {}
     },
     "@ax/axunitst-test-director": {
       "name": "@ax/axunitst-test-director",
-      "version": "9.4.8",
-      "integrity": "sha512-uUFX1N48V7n7gqF82i1JiPlmejb0AKrr1hzfqG48BqKp177py2Dbir7WLPGxda9UY4t3uiJGnAmclI9GQrxUsA==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/axunitst-test-director/-/axunitst-test-director-9.4.8.tgz",
+      "version": "9.6.6",
+      "integrity": "sha512-0hY54z0Reslq+LWmQduIkgG+mWtjl7Mf1JIOxjgllPFniRpF2f0yME4Zf3rQbaaCBJAIaLB2rRzmLUhf6BxGLQ==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/axunitst-test-director/-/axunitst-test-director-9.6.6.tgz",
       "dependencies": {
-        "@ax/axunitst-analyzer.stc-plugin": "9.4.8",
-        "@ax/axunitst-ls-contrib": "9.4.8",
+        "@ax/axunitst-analyzer.stc-plugin": "9.6.6",
+        "@ax/axunitst-ls-contrib": "9.6.6",
         "@ax/build-native": "^16.0.3",
-        "@ax/axunitst-test-director-linux-x64": "9.4.8",
-        "@ax/axunitst-test-director-win-x64": "9.4.8"
+        "@ax/axunitst-test-director-linux-x64": "9.6.6",
+        "@ax/axunitst-test-director-win-x64": "9.6.6"
       }
     },
     "@ax/axunitst-test-director-linux-x64": {
       "name": "@ax/axunitst-test-director-linux-x64",
-      "version": "9.4.8",
-      "integrity": "sha512-QiSznU/RpEmo5U0wDuziHt+N3mAvYMdN1capCUSIlFrROt7ebqS3mUiS62s2RxAwSZ02ccnKtTN+Od2rPCNp5w==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/axunitst-test-director-linux-x64/-/axunitst-test-director-linux-x64-9.4.8.tgz",
+      "version": "9.6.6",
+      "integrity": "sha512-coyu/oFM8n6MSf+6y097o+qaGD35qSPZTz8NT8/Nt70XXDUKd+nRtgfU0wXNqaI9G34Aa12v0tx2Nfs95wxPAQ==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/axunitst-test-director-linux-x64/-/axunitst-test-director-linux-x64-9.6.6.tgz",
       "os": [
         "linux"
       ],
@@ -87,9 +87,9 @@
     },
     "@ax/axunitst-test-director-win-x64": {
       "name": "@ax/axunitst-test-director-win-x64",
-      "version": "9.4.8",
-      "integrity": "sha512-9SgND7RSroldzKr6oxEws4VpY1mJ6jm+G4P7G1QiS2GpYw3Xa2ni7htFKCPVybFkT+EHCu8iLNgVxKfxyYU5hw==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/axunitst-test-director-win-x64/-/axunitst-test-director-win-x64-9.4.8.tgz",
+      "version": "9.6.6",
+      "integrity": "sha512-4W9usK7cIRy5c0HFy2+DPcnS2dOrK6f1q61r2+w677CV+b5Misg1fSRCOmWeXslZkylING5e9snDKQ6vIr/Q4A==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/axunitst-test-director-win-x64/-/axunitst-test-director-win-x64-9.6.6.tgz",
       "os": [
         "win32"
       ],
@@ -172,9 +172,9 @@
     },
     "@ax/debug-st-ls-plugin": {
       "name": "@ax/debug-st-ls-plugin",
-      "version": "1.0.10",
-      "integrity": "sha512-nwnW3rPp0khNWn2tRwuFw753AhkVQVrbJ2vXIfbJgsDtQuyQ8IOms0zwilRYvaXFLU1PzQ7qbsIiPuVZw7W9eQ==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/debug-st-ls-plugin/-/debug-st-ls-plugin-1.0.10.tgz",
+      "version": "1.1.11",
+      "integrity": "sha512-Mn0bV/xTgZp4gL3GCuTh+83oEomcZMyWynZ5lLc/pM4nf3IljZTi8dfWB95FYcxWIlp4KKQMkOvD2K55A8gb+g==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/debug-st-ls-plugin/-/debug-st-ls-plugin-1.1.11.tgz",
       "dependencies": {}
     },
     "@ax/diagnostic-buffer": {
@@ -215,35 +215,35 @@
     },
     "@ax/hw-s7-1500": {
       "name": "@ax/hw-s7-1500",
-      "version": "4.4.1",
-      "integrity": "sha512-7jQ/KO2A/txdMsZZadbF98ArkJfgMXswf4gJSO4h6qBFIllc9hhxCtVZcDeesbIh+TPdFAlnAL/ohbCZqNr3/A==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/hw-s7-1500/-/hw-s7-1500-4.4.1.tgz",
+      "version": "4.6.0",
+      "integrity": "sha512-H3VkQjRNAiUC2KgT+Q3w9dnIylfJXDrVvVLSM5oauQ9ADg8r2yS3uQ48UvaiK0olhEaDaziXPcOsdadex5mozQ==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/hw-s7-1500/-/hw-s7-1500-4.6.0.tgz",
       "dependencies": {
-        "@ax/hw-shared-s7-1500": "4.4.1"
+        "@ax/hw-shared-s7-1500": "4.6.0"
       }
     },
     "@ax/hw-shared-s7-1500": {
       "name": "@ax/hw-shared-s7-1500",
-      "version": "4.4.1",
-      "integrity": "sha512-h2pDcmA0It/1F3pajYYWYKGtUj6P5w2guHGlMX+NGintHPfsktiXw9p+SzWYdPMW2s4LLFD6oNlrBCl2lyGseg==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/hw-shared-s7-1500/-/hw-shared-s7-1500-4.4.1.tgz",
+      "version": "4.6.0",
+      "integrity": "sha512-o7fXq5DURbxL0voAmDwLZo1cbq62ps4jX4gJ/TfaByvlIny+rVEEGVCTwb7QOpIk42KmlP0aVJisIYYq/ahMbA==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/hw-shared-s7-1500/-/hw-shared-s7-1500-4.6.0.tgz",
       "dependencies": {}
     },
     "@ax/hwc": {
       "name": "@ax/hwc",
-      "version": "4.4.1",
-      "integrity": "sha512-h8DGVEbETp6kHinJ9dZtVmS+ZYobgnxc+SqhihRGR/vxFP6qgtitu2CTtPRzNacbAGVkGkxKoISAByQ1mPJhdg==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/hwc/-/hwc-4.4.1.tgz",
+      "version": "4.6.0",
+      "integrity": "sha512-muvhbwWLtPbh1tI5OUGPGMeqly5NLVk8P8HY26ChNW9U5T1DEfm+zg+PHyFjjDJ7lC3QoaT2lsNvAjs6HzdEqw==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/hwc/-/hwc-4.6.0.tgz",
       "dependencies": {
-        "@ax/hwc-linux-x64": "4.4.1",
-        "@ax/hwc-win-x64": "4.4.1"
+        "@ax/hwc-linux-x64": "4.6.0",
+        "@ax/hwc-win-x64": "4.6.0"
       }
     },
     "@ax/hwc-linux-x64": {
       "name": "@ax/hwc-linux-x64",
-      "version": "4.4.1",
-      "integrity": "sha512-7LsmPmVhsSVYYCSTOaupgn9u3oHobVGn4T32BGYazbdo/iWAbby8XOpzGF14FswgMUAYQCsteKdtAX8t4xjMVQ==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/hwc-linux-x64/-/hwc-linux-x64-4.4.1.tgz",
+      "version": "4.6.0",
+      "integrity": "sha512-9vXILyo79UcN/jP5at6hICI9FQ1NCEjJEt0eA9ru28fj+mZ3CeIKp8FkvIr76Wi3ULGYfUo+Y6Ra1tWtSRQTEw==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/hwc-linux-x64/-/hwc-linux-x64-4.6.0.tgz",
       "os": [
         "linux"
       ],
@@ -254,9 +254,9 @@
     },
     "@ax/hwc-win-x64": {
       "name": "@ax/hwc-win-x64",
-      "version": "4.4.1",
-      "integrity": "sha512-TeARUN93XppKe017EkIaDf+LtoGrtpinKcYW5WvegaHXEHM75wVQv//BuFgPIwtfLeWh4DKGLu148oDfx2uNNA==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/hwc-win-x64/-/hwc-win-x64-4.4.1.tgz",
+      "version": "4.6.0",
+      "integrity": "sha512-w0yoFwun/g0wqvHsERZnNJBofY/J8HKaqmYuPYOC/+0TFCwiVnPyfQUNNz0iXIcOhP0SVEGGED7JefZepZjtEQ==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/hwc-win-x64/-/hwc-win-x64-4.6.0.tgz",
       "os": [
         "win32"
       ],
@@ -267,9 +267,9 @@
     },
     "@ax/hwld": {
       "name": "@ax/hwld",
-      "version": "3.4.0",
-      "integrity": "sha512-YfUS32jW8cc5pSlpWmVWJsatQsqKS2NE8hqX6EmYHJpr/cpYVXzs1ePPXQBByuWqkL5T+MQd7VDsXp/b6A/RHQ==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/hwld/-/hwld-3.4.0.tgz",
+      "version": "3.6.0",
+      "integrity": "sha512-BbH3qRa95i2vDeVqih59yOelKKh3KwcL6epchMdk2HlkCiqEs9rJKU5UM0eYlQOYt9I9aOZ6s5rhECDdernonA==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/hwld/-/hwld-3.6.0.tgz",
       "cpu": [
         "x64"
       ],
@@ -277,19 +277,19 @@
     },
     "@ax/mod": {
       "name": "@ax/mod",
-      "version": "1.14.13",
-      "integrity": "sha512-U8Oqb/iPfhCs0xIVyFzGzvdxNQRVOYqag+L3DrlppOsAHJO5wTFsMZnKK48P8bAe9X6th4ptAPz1q6sICrm1Dg==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/mod/-/mod-1.14.13.tgz",
+      "version": "1.15.85",
+      "integrity": "sha512-6aerKTTsFw+hnvxPyIux10EZSE69AR998mgw6WR7op/vSx7CBDDqFUUUaC6mw3fwU+TgFl4tSDuMJcTBpbaimg==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/mod/-/mod-1.15.85.tgz",
       "dependencies": {
-        "@ax/mod-linux-x64": "1.14.13",
-        "@ax/mod-win-x64": "1.14.13"
+        "@ax/mod-linux-x64": "1.15.85",
+        "@ax/mod-win-x64": "1.15.85"
       }
     },
     "@ax/mod-linux-x64": {
       "name": "@ax/mod-linux-x64",
-      "version": "1.14.13",
-      "integrity": "sha512-zwr0LV2gn77IjvIPnhbs2bLR6dxfnv2kV8ks+95RMpwgKI/rp0Se7d6+vf0e+uSjDB3C4wAl7fdWATn/fCnslQ==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/mod-linux-x64/-/mod-linux-x64-1.14.13.tgz",
+      "version": "1.15.85",
+      "integrity": "sha512-6FGIcUNJCHJ4NfQnQ9MpbJJDJomx4/f+74W2Lpa7pEr2ARISwZS/rh4cg9/lAB2QhJ8NJ5AKPSItaYhSBlwEwA==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/mod-linux-x64/-/mod-linux-x64-1.15.85.tgz",
       "os": [
         "linux"
       ],
@@ -300,9 +300,9 @@
     },
     "@ax/mod-win-x64": {
       "name": "@ax/mod-win-x64",
-      "version": "1.14.13",
-      "integrity": "sha512-YX8JAhM08AbT2suN7gBOCQUw85iF+S0/P3U2NXBQjBbfapYzALHPAsDJFEJ2lMfG+udCmJrdKMo9pyS9mSCojA==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/mod-win-x64/-/mod-win-x64-1.14.13.tgz",
+      "version": "1.15.85",
+      "integrity": "sha512-um6vZ06QBwLl/eNG3x3ABmulgrPBc1EjOP/rLF2hi4jfu+8yltY/W4oDQJsqbqtRsmGnr7f3WWUyM6w7a3xjnw==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/mod-win-x64/-/mod-win-x64-1.15.85.tgz",
       "os": [
         "win32"
       ],
@@ -313,19 +313,19 @@
     },
     "@ax/mon": {
       "name": "@ax/mon",
-      "version": "1.14.13",
-      "integrity": "sha512-cHOCgXwWmUuv2USXC+LbBPyJPC0s3PAknfO9nZWqE42Rv+7n7rbb9/tKr3MRlmeHsiyZ1qq8Pm0EAwD5TpRY5g==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/mon/-/mon-1.14.13.tgz",
+      "version": "1.15.85",
+      "integrity": "sha512-ERqXGSXElP8+m3kA+QozyQz+rbDGQyu7iYfoGX1gy9yXB6PPAQkp0HuB+/KcyahlOKPFs2/SRqB6V1mnoFbAUg==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/mon/-/mon-1.15.85.tgz",
       "dependencies": {
-        "@ax/mon-linux-x64": "1.14.13",
-        "@ax/mon-win-x64": "1.14.13"
+        "@ax/mon-linux-x64": "1.15.85",
+        "@ax/mon-win-x64": "1.15.85"
       }
     },
     "@ax/mon-linux-x64": {
       "name": "@ax/mon-linux-x64",
-      "version": "1.14.13",
-      "integrity": "sha512-X1KD7owJn6X5NaXPYTlA4thjnmG5TKcigu7reDiQzFI0iWslg/sas2ZGqEufvNgvF82xWFRkCAKZ3F7w3alp+g==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/mon-linux-x64/-/mon-linux-x64-1.14.13.tgz",
+      "version": "1.15.85",
+      "integrity": "sha512-VbCxoCSzPYtTnZOLgKsRWBm3dZlpII1BcNQWRCu/vOhDxtQiep3PjByI9t0nh9s/ONi1VyxAONxgoDn6sgW13g==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/mon-linux-x64/-/mon-linux-x64-1.15.85.tgz",
       "os": [
         "linux"
       ],
@@ -336,9 +336,9 @@
     },
     "@ax/mon-win-x64": {
       "name": "@ax/mon-win-x64",
-      "version": "1.14.13",
-      "integrity": "sha512-APrOgHbSYNNSHREYcsBb6DoYyPacz1w1XXjkDlrmGc4eivn0f6C9L/P4kRPV+va3ieTNa68s2NLPl1xLLE2W9A==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/mon-win-x64/-/mon-win-x64-1.14.13.tgz",
+      "version": "1.15.85",
+      "integrity": "sha512-ue+rOC6wsC50oeP/nLsa3QaDG9oJQgEwuD0ndWVVly+xKzwNwmGySlFxGOJ+UCpja/ZQHLWmMEJxVJZFF+OCYA==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/mon-win-x64/-/mon-win-x64-1.15.85.tgz",
       "os": [
         "win32"
       ],
@@ -373,20 +373,20 @@
     },
     "@ax/sdb": {
       "name": "@ax/sdb",
-      "version": "1.14.13",
-      "integrity": "sha512-WYCfDXL/kzRGoRPZ/52XvFjA4DRhkRRKDQD4OqSSL2A602xlI8FVcvBh3MANZbpxbrY4RgYKru50AHRogWZnhQ==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/sdb/-/sdb-1.14.13.tgz",
+      "version": "1.15.85",
+      "integrity": "sha512-2q6+8cf7zBONAPJkcC/1kU/O1BzpgXsMAXIaLWOo2y4RLFlvwrncGjMCXDHmkwjwZRga1rrkOdwE7oSsnhcDBA==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/sdb/-/sdb-1.15.85.tgz",
       "dependencies": {
         "@ax/debug-st-ls-plugin": "^1.0.0",
-        "@ax/sdb-linux-x64": "1.14.13",
-        "@ax/sdb-win-x64": "1.14.13"
+        "@ax/sdb-linux-x64": "1.15.85",
+        "@ax/sdb-win-x64": "1.15.85"
       }
     },
     "@ax/sdb-linux-x64": {
       "name": "@ax/sdb-linux-x64",
-      "version": "1.14.13",
-      "integrity": "sha512-3UoMmbvJS8pR8bgS2aXr34i6KrpZwdevMSmjDAvhqRvYSZSHrB3reEqZ+qN1p6A3J7x6KW+QId6j8AhfQfbR1w==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/sdb-linux-x64/-/sdb-linux-x64-1.14.13.tgz",
+      "version": "1.15.85",
+      "integrity": "sha512-41O4+MgHqoz/ps5F4WkYCNFqKGHiJ3Y5zCRQ/MehHpfXx0d3vNxyap0TnWK2I11M5yPlj91cqVYXkiADNFQNng==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/sdb-linux-x64/-/sdb-linux-x64-1.15.85.tgz",
       "os": [
         "linux"
       ],
@@ -397,9 +397,9 @@
     },
     "@ax/sdb-win-x64": {
       "name": "@ax/sdb-win-x64",
-      "version": "1.14.13",
-      "integrity": "sha512-NL3fgQKecrnK1av5KWme+MuImHDZrEC18sdzAXk97Mcfg77J820MEAzyVD/icdF544NoGIRXSum/0WoZQcbHlw==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/sdb-win-x64/-/sdb-win-x64-1.14.13.tgz",
+      "version": "1.15.85",
+      "integrity": "sha512-4a1Z7rEEYMax9zGCjBs8VodZX0zuCje0yJkjRjLRxQb/ndGpzqidqf2pCz5+CzwIOLsKrcncApdOGqo6UAGYiA==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/sdb-win-x64/-/sdb-win-x64-1.15.85.tgz",
       "os": [
         "win32"
       ],
@@ -410,33 +410,33 @@
     },
     "@ax/sdk": {
       "name": "@ax/sdk",
-      "version": "2510.13.1",
-      "integrity": "sha512-ndzRndgdh+U0OzDRm0faz2h0BphWcCkf8ZfFMiN1qy3CyD5YiC8c3tbofPum1Ytc1QqtGWwwF8AaOWqZmzHkEA==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/sdk/-/sdk-2510.13.1.tgz",
+      "version": "2510.17.0",
+      "integrity": "sha512-o/bR6C/hL2EWICpTv4ETpOWA7BUGDG4E92HeNAwdbPea7wBBSFXNRqWFpQXwDPIacpL+gmtZvH2jikYbivwd6A==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/sdk/-/sdk-2510.17.0.tgz",
       "dependencies": {
         "@ax/apax-build": "2.2.60",
-        "@ax/axunitst": "9.4.8",
+        "@ax/axunitst": "9.6.6",
         "@ax/certificate-management": "2.0.1",
         "@ax/diagnostic-buffer": "2.2.0",
-        "@ax/hw-s7-1500": "4.4.1",
-        "@ax/hwc": "4.4.1",
-        "@ax/hwld": "3.4.0",
-        "@ax/mod": "1.14.13",
-        "@ax/mon": "1.14.13",
+        "@ax/hw-s7-1500": "4.6.0",
+        "@ax/hwc": "4.6.0",
+        "@ax/hwld": "3.6.0",
+        "@ax/mod": "1.15.85",
+        "@ax/mon": "1.15.85",
         "@ax/plc-control": "1.7.22",
         "@ax/plc-info": "4.2.0",
-        "@ax/sdb": "1.14.13",
-        "@ax/simatic-package-tool": "2.0.17",
+        "@ax/sdb": "1.15.85",
+        "@ax/simatic-package-tool": "2.0.20",
         "@ax/sld": "3.8.3",
-        "@ax/st-lang-contrib-xlad": "1.1.0",
-        "@ax/st-ls": "11.5.53",
-        "@ax/st-opcua.stc-plugin": "2.0.0",
-        "@ax/st-resources.stc-plugin": "4.0.3",
-        "@ax/stc": "11.5.53",
-        "@ax/target-llvm": "11.5.53",
-        "@ax/target-mc7plus": "11.5.53",
+        "@ax/st-lang-contrib-xlad": "1.3.1",
+        "@ax/st-ls": "11.6.37",
+        "@ax/st-opcua.stc-plugin": "2.1.0",
+        "@ax/st-resources.stc-plugin": "4.0.4",
+        "@ax/stc": "11.6.37",
+        "@ax/target-llvm": "11.6.37",
+        "@ax/target-mc7plus": "11.6.37",
         "@ax/trace": "3.4.0",
-        "@ax/xlad-service": "1.1.0"
+        "@ax/xlad-service": "1.3.0"
       }
     },
     "@ax/simatic-clocks": {
@@ -448,9 +448,9 @@
     },
     "@ax/simatic-package-tool": {
       "name": "@ax/simatic-package-tool",
-      "version": "2.0.17",
-      "integrity": "sha512-2W7s5ga23f+rG0fKRyhg+fhE7+dZOkPwwYerC95Y0wTf1aUkxmOisTMstbPrjEkhoiQn4x2XEbRe4JR5M2kKQw==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/simatic-package-tool/-/simatic-package-tool-2.0.17.tgz",
+      "version": "2.0.20",
+      "integrity": "sha512-3b0GdCYeRBmghGUj6hiyv3S6DXNcpu47KqJ3tcKbaow1NFd/DEphELnkddATBkxpoRBouVav6yxggYanM/8CNw==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/simatic-package-tool/-/simatic-package-tool-2.0.20.tgz",
       "cpu": [
         "x64"
       ],
@@ -468,33 +468,33 @@
     },
     "@ax/st-docs": {
       "name": "@ax/st-docs",
-      "version": "11.5.53",
-      "integrity": "sha512-I35Y9Gg6/MfJrRDl2qzyoV5froyJDBkzFEjyIrMVzQ1K5BsWDrUqk/YJxTxJmvWMe6xpN+cW8aU1ydYlUbXhqg==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/st-docs/-/st-docs-11.5.53.tgz",
+      "version": "11.6.37",
+      "integrity": "sha512-nf/Zs2LOt4la+PZGCZaoqp/vEvI6WLDCs8giaSEHZWMAGQUkEF6Z4sQpP5MRHZPoDcLhdMyiuxKWqVEtfbsWKA==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/st-docs/-/st-docs-11.6.37.tgz",
       "dependencies": {}
     },
     "@ax/st-lang-contrib-xlad": {
       "name": "@ax/st-lang-contrib-xlad",
-      "version": "1.1.0",
-      "integrity": "sha512-IgO2iqsbjwj5A8+DwqSpP4Ed0ouSvew5dV375hXHNw510J1nSyPN/bqD3gutkurspr4giW9O1QTiBK9JZdwUPg==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/st-lang-contrib-xlad/-/st-lang-contrib-xlad-1.1.0.tgz",
+      "version": "1.3.1",
+      "integrity": "sha512-3ECd0WFcpbG2NldPedGTx6ki6Si/HeIRFwlry3CMbKEXKlzyOCOjE+byZ4euygxNWaetTdrCmQ5poRj6NAV/JQ==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/st-lang-contrib-xlad/-/st-lang-contrib-xlad-1.3.1.tgz",
       "dependencies": {}
     },
     "@ax/st-ls": {
       "name": "@ax/st-ls",
-      "version": "11.5.53",
-      "integrity": "sha512-NYNNs4AmCjY9KchK1GnAjydOlapBmSN+YJcWNTmNWmECQn6f/Ija+Ie7g6Eac4C8jaUymgFSoymPHWUf11FCQA==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/st-ls/-/st-ls-11.5.53.tgz",
+      "version": "11.6.37",
+      "integrity": "sha512-c+SFj0soqdhQzisfQBIGPaTP/fmHG8+1S1L0E0Zm0wKTGzHkfSD9hLIOMYQgVIko/UrwR0cmavQwv+rUK0L7yQ==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/st-ls/-/st-ls-11.6.37.tgz",
       "dependencies": {
-        "@ax/st-ls-linux-x64": "11.5.53",
-        "@ax/st-ls-win-x64": "11.5.53"
+        "@ax/st-ls-linux-x64": "11.6.37",
+        "@ax/st-ls-win-x64": "11.6.37"
       }
     },
     "@ax/st-ls-linux-x64": {
       "name": "@ax/st-ls-linux-x64",
-      "version": "11.5.53",
-      "integrity": "sha512-oDEFY4+2pUQFOM8c8rzZThFTJDLKU5HTCnAuvB9KtGekgDou5Jp0nua2oh/EMjsag89WiqhDHQFU5OgVFRW/8A==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/st-ls-linux-x64/-/st-ls-linux-x64-11.5.53.tgz",
+      "version": "11.6.37",
+      "integrity": "sha512-gfsB0r3yrNHHdPBC72ghzTTP2WqYlmTh5KJAs8XQcgjoFfAT3bgnMK/Ctwc4QePeQdloxdcsIrLHfGUY3zFpXQ==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/st-ls-linux-x64/-/st-ls-linux-x64-11.6.37.tgz",
       "os": [
         "linux"
       ],
@@ -505,9 +505,9 @@
     },
     "@ax/st-ls-win-x64": {
       "name": "@ax/st-ls-win-x64",
-      "version": "11.5.53",
-      "integrity": "sha512-drWVF0Iqu/vTJKXQKA7KAtpr+1+LO1MQWNCgwhMfIUUazTXlGRhSlJru1WKR+6Nibp/Lq0pVdfQxIi7Rx9klsg==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/st-ls-win-x64/-/st-ls-win-x64-11.5.53.tgz",
+      "version": "11.6.37",
+      "integrity": "sha512-pWPGqVWBNe3st3OYS/VGBR+xQRBX4WqTjxlJ1GtsEbb99IVgQ/74bdXnh4JPP14lF1YteEe7DrpYW3YGbackqQ==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/st-ls-win-x64/-/st-ls-win-x64-11.6.37.tgz",
       "os": [
         "win32"
       ],
@@ -518,33 +518,33 @@
     },
     "@ax/st-opcua.stc-plugin": {
       "name": "@ax/st-opcua.stc-plugin",
-      "version": "2.0.0",
-      "integrity": "sha512-afCvK6L/haPiKnhmomA/1QjNKwRq+8GBTzscgznNKCXNqVU+ZTmTLpZkSjZAdzAQUaQ2RtqhQ10tVsEZSLWA6w==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/st-opcua.stc-plugin/-/st-opcua.stc-plugin-2.0.0.tgz",
+      "version": "2.1.0",
+      "integrity": "sha512-f5exlEf0IHVuVAqdOZI8MvQpZofUdVidYTCyIwcXNCvzr1K8ReoeHmv6mnjXIJEz2HeFA++e8cgb0w7WcytaFA==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/st-opcua.stc-plugin/-/st-opcua.stc-plugin-2.1.0.tgz",
       "dependencies": {}
     },
     "@ax/st-resources.stc-plugin": {
       "name": "@ax/st-resources.stc-plugin",
-      "version": "4.0.3",
-      "integrity": "sha512-lE/77sEF/dwaZfj5csiUtJ4+es8PDaysXLtmjiVLucE6s+qfk0VVNt9APE38gfSGgrHclARMR37AkO273iumSQ==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/st-resources.stc-plugin/-/st-resources.stc-plugin-4.0.3.tgz",
+      "version": "4.0.4",
+      "integrity": "sha512-ZX2Y5U9nOeGeBBRltBiv96gi4YHCPrm08N79lghJUUSRMqq1WFpCjvKg6RSZfnJ8zw5ZDNrycZOKFV/wa8Tu3g==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/st-resources.stc-plugin/-/st-resources.stc-plugin-4.0.4.tgz",
       "dependencies": {}
     },
     "@ax/stc": {
       "name": "@ax/stc",
-      "version": "11.5.53",
-      "integrity": "sha512-9qtLxt+lhK1ISyqxFtfEQ497rcEJcdgyvVLx1x3G9iOaJOloq9hLal154U6W+BdEwbpmaqq27nbNEujAvhhJUw==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/stc/-/stc-11.5.53.tgz",
+      "version": "11.6.37",
+      "integrity": "sha512-X1ATVX35M7NWKQnn6S7FKmXNgj2AN2+mRA3S71YKfV77rMMElrTLvYUVGGoTX4DtlRRuuAjfu9aRqOMyOqehfw==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/stc/-/stc-11.6.37.tgz",
       "dependencies": {
-        "@ax/stc-linux-x64": "11.5.53",
-        "@ax/stc-win-x64": "11.5.53"
+        "@ax/stc-linux-x64": "11.6.37",
+        "@ax/stc-win-x64": "11.6.37"
       }
     },
     "@ax/stc-linux-x64": {
       "name": "@ax/stc-linux-x64",
-      "version": "11.5.53",
-      "integrity": "sha512-iCr52EGegDxqpe3koM1zgB8Yn3xBDvE6BiisSKyzqLppjkmqXItJE/e0/O+bJpWwb/ST8d8MKz82Y0DNP2LQDw==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/stc-linux-x64/-/stc-linux-x64-11.5.53.tgz",
+      "version": "11.6.37",
+      "integrity": "sha512-0OArw6v8ryZyifHNgVHdNaZ/zWX+hd8bL0Cz9v7f9ieJNZpWL6pYrBfAxhd9bNgwKYeCWNZ3UulPDrT/LVW4QQ==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/stc-linux-x64/-/stc-linux-x64-11.6.37.tgz",
       "os": [
         "linux"
       ],
@@ -552,14 +552,14 @@
         "x64"
       ],
       "dependencies": {
-        "@ax/st-docs": "11.5.53"
+        "@ax/st-docs": "11.6.37"
       }
     },
     "@ax/stc-win-x64": {
       "name": "@ax/stc-win-x64",
-      "version": "11.5.53",
-      "integrity": "sha512-RohoRwUy+ZPGjq8igFB5ebi03ewn/a++R8hCOz8D8aol9dR57hSrzSpxcy6tZUq+Iu278sezDnzgSYPjKKmcOA==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/stc-win-x64/-/stc-win-x64-11.5.53.tgz",
+      "version": "11.6.37",
+      "integrity": "sha512-Y/lUoW2FVDEpWToznZC/EsMqkBQx6I5NcAOz5NbZctOWVBTrIQs9vvsnPRIbIZiceU/pT9vwDBTPfVmbjSqUTw==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/stc-win-x64/-/stc-win-x64-11.6.37.tgz",
       "os": [
         "win32"
       ],
@@ -567,56 +567,56 @@
         "x64"
       ],
       "dependencies": {
-        "@ax/st-docs": "11.5.53"
+        "@ax/st-docs": "11.6.37"
       }
     },
     "@ax/system-conversion": {
       "name": "@ax/system-conversion",
-      "version": "10.4.16",
-      "integrity": "sha512-7gk9B1Kg/FFK6xd3t4miyVwzpDETSbpVWx6InBLCQdVEoNrExl7j2vkMb1FqPbg3A71Vl0jNfShUqVwtklfguw==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/system-conversion/-/system-conversion-10.4.16.tgz",
+      "version": "10.4.66",
+      "integrity": "sha512-giiPq/Ye4P5q93l+VdijKHizoAjzaiKby0X+j4Hz+PIzZ50yhpL4mITw2xDRMwPF51VWH5yc9/+pdhqm9GqpqA==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/system-conversion/-/system-conversion-10.4.66.tgz",
       "dependencies": {}
     },
     "@ax/system-datetime": {
       "name": "@ax/system-datetime",
-      "version": "10.4.16",
-      "integrity": "sha512-csdSk9vVBIite0+tGSmxv0cFKlP5EoW2zE0blsEJWK+m6/f6GFXCUeyyF5CySxB85k0C3x7qvsiFnyXQm1eG2A==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/system-datetime/-/system-datetime-10.4.16.tgz",
+      "version": "10.4.66",
+      "integrity": "sha512-Jilix9GRivWDxxCxQDQxxlYE/+xHTwdJgO9TLvoBRo1kTTeM484zj6i08mFPF6lLFeMYL+HfYlp1tnx99HrkMA==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/system-datetime/-/system-datetime-10.4.66.tgz",
       "dependencies": {}
     },
     "@ax/system-math": {
       "name": "@ax/system-math",
-      "version": "10.4.16",
-      "integrity": "sha512-ysD5LyINsYhYuL/9dNxGxDBV2W+TspUYtmkgH1rRpoaHMhkCb5ZDHoGYVfzAodkvvWW2MXpu3j19okO1j4Q3/Q==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/system-math/-/system-math-10.4.16.tgz",
+      "version": "10.4.66",
+      "integrity": "sha512-H7zYfCgjxFxSX1xArphN+qjPbpDEX4YAhNpMVSNlOSaYJcID+GpMENLZa/jgzPFshLaax1RFrXSvSII3v89LFQ==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/system-math/-/system-math-10.4.66.tgz",
       "dependencies": {}
     },
     "@ax/system-strings": {
       "name": "@ax/system-strings",
-      "version": "10.4.16",
-      "integrity": "sha512-imtLRDlJz1owzO0+4QNIYTz5BCaxWBbLM7JGwOr1Y9u0YYpvpD5zo/JJKKwNTGYzgeMQtzLFvmvrQmHU/BiO5w==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/system-strings/-/system-strings-10.4.16.tgz",
+      "version": "10.4.66",
+      "integrity": "sha512-Qs+TPsg1Il+cvD6aN09xivm+N29oAWeqsnf5kqmOEs+2FL7Y6rEkEyKjv48++QplmsswymzzWw23mU9Cjuf/lg==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/system-strings/-/system-strings-10.4.66.tgz",
       "dependencies": {
-        "@ax/system-math": "^10.4.16",
-        "@ax/system-datetime": "^10.4.16",
-        "@ax/system-conversion": "^10.4.16"
+        "@ax/system-conversion": "^10.4.66",
+        "@ax/system-datetime": "^10.4.66",
+        "@ax/system-math": "^10.4.66"
       }
     },
     "@ax/target-llvm": {
       "name": "@ax/target-llvm",
-      "version": "11.5.53",
-      "integrity": "sha512-YF3NuipkhcEY3mei7RldIJgsJeI0qroTwXGDniFYOru4iKHbRjF8BAbR5DH7MPQ2OpCcm77k1zqnPS3I5JDXEQ==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/target-llvm/-/target-llvm-11.5.53.tgz",
+      "version": "11.6.37",
+      "integrity": "sha512-GorTqZSSNBx87lMRAKTznI74T0IgxdMnwiL+YKZ4rEh12RCkttUGLxjQ1gcnORcqQoFDB9Ssu1+a4kx0YeD9Hw==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/target-llvm/-/target-llvm-11.6.37.tgz",
       "dependencies": {
-        "@ax/target-llvm-linux-x64": "11.5.53",
-        "@ax/target-llvm-win-x64": "11.5.53"
+        "@ax/target-llvm-linux-x64": "11.6.37",
+        "@ax/target-llvm-win-x64": "11.6.37"
       }
     },
     "@ax/target-llvm-linux-x64": {
       "name": "@ax/target-llvm-linux-x64",
-      "version": "11.5.53",
-      "integrity": "sha512-DjKfmYVCSoDbuMYAViaPtEE70ORWuNpQuIIGIo6dFU7N3UH2ro4j1UwqfHbF+/V/lOC6E+/KTU2z2M74EzYykw==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/target-llvm-linux-x64/-/target-llvm-linux-x64-11.5.53.tgz",
+      "version": "11.6.37",
+      "integrity": "sha512-qIH2VU7dNWAyAWnDqc3rhSh67wRWBOdbAP6aJoFz3yg0y5bF88t7DBuIomzuTHEOF6EukeaH4hMYclmdfpNU4Q==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/target-llvm-linux-x64/-/target-llvm-linux-x64-11.6.37.tgz",
       "os": [
         "linux"
       ],
@@ -627,9 +627,9 @@
     },
     "@ax/target-llvm-win-x64": {
       "name": "@ax/target-llvm-win-x64",
-      "version": "11.5.53",
-      "integrity": "sha512-tNuaDvJy2/kYNMKKdm9S4dJEf7K7BFWp0GrR5mZvuK0SaTV8wjArmsMbrImk6p6tTuHVwbqZK7hnM6eL0QI3Tg==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/target-llvm-win-x64/-/target-llvm-win-x64-11.5.53.tgz",
+      "version": "11.6.37",
+      "integrity": "sha512-jUYsDorzKlpLEdfOi5/STZs5w1YQ+vG60Lgise67PXR+sPYEGegMQb0N8V9uKQLzDPm8NBDmrkTKxFQcB6jhNg==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/target-llvm-win-x64/-/target-llvm-win-x64-11.6.37.tgz",
       "os": [
         "win32"
       ],
@@ -640,19 +640,19 @@
     },
     "@ax/target-mc7plus": {
       "name": "@ax/target-mc7plus",
-      "version": "11.5.53",
-      "integrity": "sha512-XHe3D68wps4+I8HKLsK9emGyNrnwxh2Y97TLWW60PuHlSJxN6qPRR62qEnU0e3y2bp0nbo4KCT/X3aW2tnI9Lg==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/target-mc7plus/-/target-mc7plus-11.5.53.tgz",
+      "version": "11.6.37",
+      "integrity": "sha512-3v+Kv27AcGqXUJK1puFpYMmYppC32kkv9lpGJOm8L3KgeFNwaR2wzezf1gIz0fd/fvHXhf/WVnmxtnGgbLzVVQ==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/target-mc7plus/-/target-mc7plus-11.6.37.tgz",
       "dependencies": {
-        "@ax/target-mc7plus-linux-x64": "11.5.53",
-        "@ax/target-mc7plus-win-x64": "11.5.53"
+        "@ax/target-mc7plus-linux-x64": "11.6.37",
+        "@ax/target-mc7plus-win-x64": "11.6.37"
       }
     },
     "@ax/target-mc7plus-linux-x64": {
       "name": "@ax/target-mc7plus-linux-x64",
-      "version": "11.5.53",
-      "integrity": "sha512-MU8TWXe0D3Unz1L7b6wlfeFcSWKxbMczbBnMfTI3RVErqK25unmHniP8zTFzui8C4sjIJPZsiAadifrpGmzTYg==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/target-mc7plus-linux-x64/-/target-mc7plus-linux-x64-11.5.53.tgz",
+      "version": "11.6.37",
+      "integrity": "sha512-etUamY7XSr9Xyz+z6ImUxq0lwAD8LgRhh4V/5fnZl0KI2Rf/wzGnmF9dw9OfsR3sTv+VXUk43hK6KM1ugH/2xw==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/target-mc7plus-linux-x64/-/target-mc7plus-linux-x64-11.6.37.tgz",
       "os": [
         "linux"
       ],
@@ -663,9 +663,9 @@
     },
     "@ax/target-mc7plus-win-x64": {
       "name": "@ax/target-mc7plus-win-x64",
-      "version": "11.5.53",
-      "integrity": "sha512-KO7vqTx3UMKea/SCx9HQougTbLbei2vJ0Z4YJIYEvrgMYZ4a6ypcXDPreF1yyUXOoaAS6eGPS8R74FaWtkKT/A==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/target-mc7plus-win-x64/-/target-mc7plus-win-x64-11.5.53.tgz",
+      "version": "11.6.37",
+      "integrity": "sha512-NmmNKMf4nB7aCoNP8gslFosKym7RA38g+66NAfYUxV+WPXEWU51nZ1h0qIwDCiy9LrKiDShTH6+f/g8vb1bXHQ==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/target-mc7plus-win-x64/-/target-mc7plus-win-x64-11.6.37.tgz",
       "os": [
         "win32"
       ],
@@ -712,9 +712,9 @@
     },
     "@ax/xlad-service": {
       "name": "@ax/xlad-service",
-      "version": "1.1.0",
-      "integrity": "sha512-cgj4z0WMmBuSKSV/w9CriBRig0WpR4T++ihvL7IC56U89Ff4Vqe77hO9O/WAeHYzU8zxPLep6mfpUGH2dCP3ZQ==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/xlad-service/-/xlad-service-1.1.0.tgz",
+      "version": "1.3.0",
+      "integrity": "sha512-NaO2X8omrUpxvDu16mYWkgd4tCYWch9R+183DHM9u8uqJG8t7oK+2JDHEdfGE02wokzWQ5RGPaVXGDoq2gG0kg==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/xlad-service/-/xlad-service-1.3.0.tgz",
       "dependencies": {}
     }
   },
@@ -722,33 +722,34 @@
   "catalogs": {
     "@ax/simatic-ax": {
       "name": "@ax/simatic-ax",
-      "version": "2510.13.1",
-      "integrity": "sha512-ggZtgX/7Fl3KQ6DCVKkWpcyLL9hLYJ28dNU37F++iC+UGG5IBGjwgWV5xY1fkOtg2xLjHRR9J6QgBdFeTynJcQ==",
-      "resolved": "https://registry.simatic-ax.siemens.io/@ax/simatic-ax/-/simatic-ax-2510.13.1.tgz",
+      "version": "2510.17.0",
+      "integrity": "sha512-PMNd/ch+bb6B5/S4F/dlCQqHQ9lZ/96sdCDpFhMnd4/D9f0yVaX97IuPOrlEHb8xXYi7TEGqJo60spGRCe1C+Q==",
+      "resolved": "https://registry.simatic-ax.siemens.io/@ax/simatic-ax/-/simatic-ax-2510.17.0.tgz",
       "dependencies": {},
       "catalogDependencies": {
         "@ax/apax-build": "2.2.60",
-        "@ax/ax2tia": "12.2.8",
-        "@ax/axunit-mocking": "9.4.8",
-        "@ax/axunitst": "9.4.8",
-        "@ax/axunitst-library": "9.4.8",
+        "@ax/ax2tia": "12.3.10",
+        "@ax/axunit-mocking": "9.6.6",
+        "@ax/axunitst": "9.6.6",
+        "@ax/axunitst-library": "9.6.6",
         "@ax/build-native": "16.1.51",
         "@ax/certificate-management": "2.0.1",
         "@ax/dcp-utility": "1.2.1",
-        "@ax/debug-st-ls-plugin": "1.0.10",
+        "@ax/debug-st-ls-plugin": "1.1.11",
         "@ax/diagnostic-buffer": "2.2.0",
         "@ax/hardware-diagnostics": "1.2.0",
-        "@ax/hw-et200sp": "4.4.1",
-        "@ax/hw-s7-1500": "4.4.1",
-        "@ax/hwc": "4.4.1",
-        "@ax/hwld": "3.4.0",
-        "@ax/mod": "1.14.13",
-        "@ax/mon": "1.14.13",
+        "@ax/hw-et200sp": "4.6.0",
+        "@ax/hw-s7-1200g2": "4.6.0",
+        "@ax/hw-s7-1500": "4.6.0",
+        "@ax/hwc": "4.6.0",
+        "@ax/hwld": "3.6.0",
+        "@ax/mod": "1.15.85",
+        "@ax/mon": "1.15.85",
         "@ax/plc-control": "1.7.22",
         "@ax/plc-info": "4.2.0",
-        "@ax/plc-web-app-manager": "1.2.0",
-        "@ax/sdb": "1.14.13",
-        "@ax/simatic-alarming": "5.1.0",
+        "@ax/plc-web-app-manager": "1.3.0",
+        "@ax/sdb": "1.15.85",
+        "@ax/simatic-alarming": "5.2.0",
         "@ax/simatic-clocks": "11.0.116",
         "@ax/simatic-communication": "11.0.2",
         "@ax/simatic-crypto": "4.0.40",
@@ -760,50 +761,50 @@
         "@ax/simatic-memoryaccess": "6.0.66",
         "@ax/simatic-modbusrtu": "4.0.59",
         "@ax/simatic-modbustcp": "1.0.166",
-        "@ax/simatic-motioncontrol-native-v10": "10.1.6",
-        "@ax/simatic-motioncontrol-native-v5": "10.1.6",
-        "@ax/simatic-motioncontrol-native-v6": "10.1.6",
-        "@ax/simatic-motioncontrol-native-v7": "10.1.6",
-        "@ax/simatic-motioncontrol-native-v8": "10.1.6",
-        "@ax/simatic-motioncontrol-native-v9": "10.1.6",
-        "@ax/simatic-motioncontrol-v10": "10.1.6",
-        "@ax/simatic-motioncontrol-v10-mocking": "10.1.6",
-        "@ax/simatic-motioncontrol-v7": "10.1.6",
-        "@ax/simatic-motioncontrol-v7-mocking": "10.1.6",
-        "@ax/simatic-motioncontrol-v8": "10.1.6",
-        "@ax/simatic-motioncontrol-v8-mocking": "10.1.6",
-        "@ax/simatic-motioncontrol-v9": "10.1.6",
-        "@ax/simatic-motioncontrol-v9-mocking": "10.1.6",
-        "@ax/simatic-package-tool": "2.0.17",
+        "@ax/simatic-motioncontrol-native-v10": "10.1.8",
+        "@ax/simatic-motioncontrol-native-v5": "10.1.8",
+        "@ax/simatic-motioncontrol-native-v6": "10.1.8",
+        "@ax/simatic-motioncontrol-native-v7": "10.1.8",
+        "@ax/simatic-motioncontrol-native-v8": "10.1.8",
+        "@ax/simatic-motioncontrol-native-v9": "10.1.8",
+        "@ax/simatic-motioncontrol-v10": "10.1.8",
+        "@ax/simatic-motioncontrol-v10-mocking": "10.1.8",
+        "@ax/simatic-motioncontrol-v7": "10.1.8",
+        "@ax/simatic-motioncontrol-v7-mocking": "10.1.8",
+        "@ax/simatic-motioncontrol-v8": "10.1.8",
+        "@ax/simatic-motioncontrol-v8-mocking": "10.1.8",
+        "@ax/simatic-motioncontrol-v9": "10.1.8",
+        "@ax/simatic-motioncontrol-v9-mocking": "10.1.8",
+        "@ax/simatic-package-tool": "2.0.20",
         "@ax/simatic-pointtopoint": "4.0.54",
         "@ax/simatic-tasks": "11.0.2",
         "@ax/simatic-technology-objects": "4.0.43",
         "@ax/sld": "3.8.3",
-        "@ax/st-lang-contrib-xlad": "1.1.0",
-        "@ax/st-ls": "11.5.53",
-        "@ax/st-opcua.stc-plugin": "2.0.0",
-        "@ax/st-resources.stc-plugin": "4.0.3",
-        "@ax/stc": "11.5.53",
-        "@ax/system": "10.4.16",
-        "@ax/system-bistable": "10.4.16",
-        "@ax/system-bitaccess": "10.4.16",
-        "@ax/system-conversion": "10.4.16",
-        "@ax/system-counters": "10.4.16",
-        "@ax/system-data": "10.4.16",
-        "@ax/system-datetime": "10.4.16",
-        "@ax/system-edgedetection": "10.4.16",
-        "@ax/system-fastmath": "10.4.16",
-        "@ax/system-math": "10.4.16",
-        "@ax/system-selection": "10.4.16",
-        "@ax/system-serde": "10.4.16",
-        "@ax/system-strings": "10.4.16",
-        "@ax/system-timer": "10.4.16",
-        "@ax/target-llvm": "11.5.53",
-        "@ax/target-mc7plus": "11.5.53",
-        "@ax/tia2st": "4.3.5",
+        "@ax/st-lang-contrib-xlad": "1.3.1",
+        "@ax/st-ls": "11.6.37",
+        "@ax/st-opcua.stc-plugin": "2.1.0",
+        "@ax/st-resources.stc-plugin": "4.0.4",
+        "@ax/stc": "11.6.37",
+        "@ax/system": "10.4.66",
+        "@ax/system-bistable": "10.4.66",
+        "@ax/system-bitaccess": "10.4.66",
+        "@ax/system-conversion": "10.4.66",
+        "@ax/system-counters": "10.4.66",
+        "@ax/system-data": "10.4.66",
+        "@ax/system-datetime": "10.4.66",
+        "@ax/system-edgedetection": "10.4.66",
+        "@ax/system-fastmath": "10.4.66",
+        "@ax/system-math": "10.4.66",
+        "@ax/system-selection": "10.4.66",
+        "@ax/system-serde": "10.4.66",
+        "@ax/system-strings": "10.4.66",
+        "@ax/system-timer": "10.4.66",
+        "@ax/target-llvm": "11.6.37",
+        "@ax/target-mc7plus": "11.6.37",
+        "@ax/tia2st": "4.3.8",
         "@ax/trace": "3.4.0",
-        "@ax/xlad-service": "1.1.0",
-        "@ax/sdk": "2510.13.1"
+        "@ax/xlad-service": "1.3.0",
+        "@ax/sdk": "2510.17.0"
       }
     }
   }
