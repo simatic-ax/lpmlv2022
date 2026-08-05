@@ -29,9 +29,9 @@ publicKeys:
 
 # Dependencies
 dependencies:
-  "@ax/simatic-1500-clocks": 10.0.6
-  "@ax/system-datetime": 10.0.24
-  "@ax/system-conversion": 10.0.24
+  "@ax/simatic-1500-clocks": 10.0.64
+  "@ax/system-datetime": 10.4.66
+  "@ax/system-conversion": 10.4.66
 
 devDependencies:
   "@ax/sdk": ^2504.1.1
