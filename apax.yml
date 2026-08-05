@@ -50,4 +50,4 @@ files:
 
 # Catalog to be intalled
 catalogs:
-  "@ax/simatic-ax": ^2504.1.1
+  "@ax/simatic-ax": ^2510.0.0
