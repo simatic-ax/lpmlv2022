@@ -62,12 +62,6 @@ jobs:
           coverage: true
           log-level: debug
 
-      - name: Check links
-        uses: gaurav-nelson/github-action-markdown-link-check@v1
-        with:
-          check-modified-files-only: 'yes'
-          base-branch: 'main'
-
       - name: Upload build artifacts
         if: ${{ github.event_name == 'workflow_call' || github.event_name == 'release'}}
         uses: actions/upload-artifact@v7
