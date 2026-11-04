@@ -1,6 +1,6 @@
 NAMESPACE Simatic.Ax.LPMLV2022
 
-    TYPE
+    TYPE INTERNAL
         typeStatesInCurrentMode  : STRUCT   // Copied from configuration
             clearing  : BOOL;
             stopped  : BOOL;

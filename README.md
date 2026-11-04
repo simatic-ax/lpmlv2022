@@ -2,7 +2,7 @@
 
 ## Description
 
-The LPMLV2022 library provides a user-friendly basis for the implementation of an OMAC PackML compliant mode and state manager including _PackTags_ for the machine data interface for SIMATIC controllers.
+The LPMLV2022 library provides a user-friendly basis for the implementation of an OMAC PackML compliant mode and state manager for SIMATIC controllers.
 
 The library is a direct conversion of the functionally identical library [LPMLV2022](https://support.industry.siemens.com/cs/ww/en/view/109821198) for use inside the TIA Portal
 
@@ -12,14 +12,9 @@ The library is a direct conversion of the functionally identical library [LPMLV2
 - **Multi-Mode Operation**: Support for Production, Maintenance, Manual, and up to 28 user-defined modes
 - **Complete State Machine**: 17 standardized states including Execute, Stopped, Starting, Holding, Suspending, and more
 - **Flexible Configuration**: Configurable enabled modes, disabled states, mode transitions, and command handling
-- **Boolean Wrapper Support**: Simplified boolean interface for unit state manager integration
+- **Boolean Wrapper Example**: Documented source code example of a boolean interface for the unit state manager
 - **Stacklight Integration**: Built-in stacklight status management according to PackML standards
 - **Comprehensive Diagnostics**: Built-in diagnostics and status reporting functionality
-
-### Requirements
-
-- SIMATIC AX
-- S7-1500T CPU with firmware version 2.9 or higher
 
 ## Getting started
 
@@ -40,18 +35,11 @@ USING Simatic.Ax.LPMLV2022;
 
 More details on how to use the library can be found on the dedicated [Getting Started](./docs/examples.md) page.
 
-### Source Code Integration
+### Notes
 
-#### Compiled package vs. source code
-
-When installed via `apax add`, the library is delivered as a **compiled binary package**.
-
-However, certain customizations require modifying the library source code directly. This includes:
-
-- Adjusting array sizes defined in `LimitConstants` (e.g. diagnostics buffer depth, number of tracked modes/states)
-- Extending or modifying the state machine behavior
-
-For these cases, the full source code is available in this GitHub repository.
+- The package is delivered compiled. The diagnostics buffer depth is fixed at 8 entries.
+- A boolean interface is not part of the package; see the [Boolean wrapper example](./docs/exampleBooleanWrapper.md).
+- The full source code is available in this GitHub repository if the state machine behavior needs to be modified.
 
 ## Library functionality
 

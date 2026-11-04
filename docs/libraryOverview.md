@@ -46,14 +46,6 @@ Within the OMAC Packaging Working Group, the PackML working group is involved wi
 
 The major part of the guidelines describes the OMAC mode management (unit mode manager and state machine), see _ISA Technical Report TR88.00.02 Machine and Unit States_.
 
-In addition the PackML [pack tags](./constants/LPMLV2022_PackTagsConstants.md) are listed which are used as standardized variable structures (pack tags) for the cross-machine coupling between machine controllers and to higher-level HMI, MES or Enterprise systems, see also _ISA Technical Report TR88.00.02 Machine and Unit States_.
-
-There exist the following variable structures for the pack tags:
-
-- Command tags, to control and parameterize the machine
-- Status tags, to provide information about the machine state
-- Administration tags, to provide information about the machine efficiency (OEE data) and machine diagnostics
-
 ## Unit Mode and State Manager
 
 The LPMLV2022 library contains a function block for the unit mode and state management according to PackML V2022.

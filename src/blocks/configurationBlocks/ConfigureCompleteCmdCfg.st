@@ -6,7 +6,7 @@ NAMESPACE Simatic.Ax.LPMLV2022
 /// Library: LPMLV2022
 /// Engineering: SIMATIC AX
 /// Restrictions: -
-/// Requirements: S7-1500 FW 2.6
+/// Requirements: S7-1500 FW 3.0
 /// Functionality: The function generates a DWord value which represents
 ///                the state configuration for all unit modes.
 ///

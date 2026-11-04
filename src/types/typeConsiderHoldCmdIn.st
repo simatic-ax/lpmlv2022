@@ -1,5 +1,5 @@
 NAMESPACE Simatic.Ax.LPMLV2022
-    TYPE
+    TYPE INTERNAL
         typeConsiderHoldCmdIn  : STRUCT   // Copied from configuration
             starting  : BOOL;
             idle  : BOOL;

@@ -1,5 +1,5 @@
 NAMESPACE Simatic.Ax.LPMLV2022
-    TYPE
+    TYPE INTERNAL
         typeConsiderCompleteCmdIn  : STRUCT   // Copied from configuration
             suspended  : BOOL;
             execute  : BOOL;
