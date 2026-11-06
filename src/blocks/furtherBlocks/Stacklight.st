@@ -6,7 +6,7 @@ NAMESPACE Simatic.Ax.LPMLV2022
 /// Library: LPMLV2022
 /// Engineering: SIMATIC AX
 /// Restrictions: -
-/// Requirements: S7-1500 FW 2.6
+/// Requirements: S7-1500 FW 3.0
 /// Functionality: Stacklight status according to ANSI/ISA-TR88.00.02-2022
 ///================================================================================
 FUNCTION_BLOCK Stacklight
@@ -26,7 +26,7 @@ FUNCTION_BLOCK Stacklight
 
     {S7.extern = ReadOnly}
     VAR_OUTPUT
-        /// Indicator for the current stacklight status -> PackTags
+        /// Indicator for the current stacklight status
         StacklightStatus : DWORD;
         /// Status of stacklight bit 0
         redSolid : BOOL;

@@ -37,7 +37,7 @@ The function block `Stacklight` can be used to generate the stacklight status in
 
 | Parameter | Type | Description |
 | ---------- | ----- | ------------ |
-| StacklightStatus | DWORD | Indicator for the current stacklight status -> PackTags |
+| StacklightStatus | DWORD | Indicator for the current stacklight status |
 | redSolid | BOOL | Status of stacklight bit 0 |
 | redFlashing | BOOL | Status of stacklight bit 1 |
 | amberSolid | BOOL | Status of stacklight bit 2 |

@@ -1,4 +1,5 @@
 # This workflow is triggered when a release is published via the UI
+# The workflow is only executed if the release is a tag and the target_commitish is a release branch
 name: Release workflow
 
 # Start the workflow as soon as a release has been published via the UI
@@ -7,9 +8,10 @@ on:
     types: [published]
 
 permissions:
-  contents: read    # required for checkout
+  contents: write    # required for checkout
   packages: write    # required for pulling the container
-  actions: write     # required for artifact uploading
+  actions: write     # required for artifact downloading
+  pull-requests: write # Für PR-Erstellung und Management
 
 jobs:
   call-development:
@@ -18,8 +20,8 @@ jobs:
     secrets:
       APAX_TOKEN: ${{ secrets.APAX_TOKEN }}
     with:
+      # checks out the branch that has been selected during the release process
       ref: ${{ github.event.release.target_commitish }}
-      version: ${{ github.event.release.tag_name }}
 
   release:
     name: Release the package
@@ -34,18 +36,14 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v7
         with:
-          # checks out the branch that has been selected during the release process
           ref: ${{ github.event.release.target_commitish }}
           fetch-depth: 0
-
-      - name: Create bin folder
-        run: mkdir -p bin
 
       - name: Download build artifacts
         uses: actions/download-artifact@v8
         with:
           name: build-artifacts
-          path: bin
+          path: bin/release
 
       - name: Version package
         uses: simatic-ax/actions/apax-version@v4

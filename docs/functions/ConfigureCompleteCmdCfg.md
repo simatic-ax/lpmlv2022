@@ -2,7 +2,7 @@
 
 ## Principle of operation
 
-This function allows the user to set the Complete control command configuration for all unit modes of the `UnitModeStateManager` and the `UnitModeStateManagerBool` easily (one configuration for all modes). The output of this function can directly be assigned to the `UnitModeStateManager` configuration `completeCmdCfg`. The bit locations within the `completeCmdCfg` DWord represent state numbers. A set bit means, that the Complete command is taken into account by the `UnitModeStateManager` in the corresponding state.
+This function allows the user to set the Complete control command configuration for all unit modes of the `UnitModeStateManager` easily (one configuration for all modes). The output of this function can directly be assigned to the `UnitModeStateManager` configuration `completeCmdCfg`. The bit locations within the `completeCmdCfg` DWord represent state numbers. A set bit means, that the Complete command is taken into account by the `UnitModeStateManager` in the corresponding state.
 
 With the function, the user has to set the associated inputs for the different states to "TRUE", e.g. "Execute := TRUE" for enabling the Complete control command to be taken into account in state Execute.
 

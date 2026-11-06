@@ -2,7 +2,7 @@
 
 ## Principle of operation
 
-This function allows the user to set the Mode Transition Configuration for one unit mode of the `UnitModeStateManager` and the `UnitModeStateManagerBool` easily. The output of this function can directly be assigned to the `UnitModeStateManager` configuration `ModeTransitionCfg[<unit mode>]`. The bit locations within the `ModeTransitionCfg` DWord represent state numbers. A set bit means, that a mode transition to or from the corresponding state is allowed.
+This function allows the user to set the Mode Transition Configuration for one unit mode of the `UnitModeStateManager` easily. The output of this function can directly be assigned to the `UnitModeStateManager` configuration `ModeTransitionCfg[<unit mode>]`. The bit locations within the `ModeTransitionCfg` DWord represent state numbers. A set bit means, that a mode transition to or from the corresponding state is allowed.
 Note, that the corresponding state bit must be set for both the current mode and the requested mode.
 
 > NOTE

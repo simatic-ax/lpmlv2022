@@ -6,7 +6,7 @@ The function block `UnitModeStateManager` is the main part of the block library 
 
 > NOTE
 >
-> If a BOOLean interface is preferred, then the block `UnitModeStateManagerBool` should be used instead of this block.
+> If a BOOLean interface is preferred, see the [Boolean wrapper example](../exampleBooleanWrapper.md).
 >
 
 ## Function characteristics

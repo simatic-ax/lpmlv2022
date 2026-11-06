@@ -1,4 +1,4 @@
-﻿USING Siemens.Simatic.Clocks;
+﻿USING Siemens.S7.Clocks;
 USING System.DateTime;
 NAMESPACE Simatic.Ax.LPMLV2022
 ///================================================================================
@@ -8,7 +8,7 @@ NAMESPACE Simatic.Ax.LPMLV2022
 /// Library: LPMLV2022
 /// Engineering: SIMATIC AX
 /// Restrictions: -
-/// Requirements: S7-1500 FW 2.6
+/// Requirements: S7-1500 FW 3.0
 /// Functionality: Machine and Unit States according to ANSI/ISA-TR88.00.02-2022
 ///                (if the default settings are active at 'holdCmdCfg' and 'completeCmdCfg')
 ///================================================================================
@@ -66,10 +66,8 @@ FUNCTION_BLOCK UnitModeStateManager
         _unitMode  : Mode := Mode#MANUAL;   // Current command mode
         _unitModeOld  : Mode := Mode#MANUAL;   // For edge detection
         _unitModeCurrentInternal  : Mode := Mode#MANUAL;   // Current internal mode
-        _unitModeCurrentInternalOld  : Mode := Mode#INVALID;   // For edge detection
         _stateCurrentOld  : State := State#STOPPED;   // For edge detection
         _stateInternal  : State := State#STOPPED;   // Current internal state
-        _stateInternalOld  : State := State#UNDEFINED;   // For edge detection
         _cntrlCmdOld  : Command := Command#UNDEFINED;   // For edge detection
         _statesInCurrentMode  : typeStatesInCurrentMode;   // Copied from configuration
         _considerHoldCmdIn  : typeConsiderHoldCmdIn;   // Copied from configuration
@@ -90,6 +88,7 @@ FUNCTION_BLOCK UnitModeStateManager
         tempRetVal : Word;   // Tag for system function
         tempDiagnosticsBufferIndexSC : Int;   // Index of actual diagnostics buffer entry for SC messages
         tempDiagnosticsBufferIndexCmd : Int;   // Index of actual diagnostics buffer entry for control command messages
+        tempDiagnosticsBufferIndexMode : Int;   // Index of actual diagnostics buffer entry for the unit mode change message
         tempSysTime : LDATE_AND_TIME; // for parsing to DTL type
         tempYear, tempMonth, tempDay, tempWeekday, tempHour, tempMinute, tempSecond, tempMillisecond, tempMicrosecond, tempNanosecond : INT;
     END_VAR
@@ -107,6 +106,7 @@ FUNCTION_BLOCK UnitModeStateManager
     diagnostics.bufferIndex := _diagnosticsBufferIndex;
     tempDiagnosticsBufferIndexSC  := -1;
     tempDiagnosticsBufferIndexCmd := -1;
+    tempDiagnosticsBufferIndexMode := -1;
 
     StateCurrent    := _stateInternal;
     UnitModeCurrent := _unitModeCurrentInternal;
@@ -137,6 +137,7 @@ FUNCTION_BLOCK UnitModeStateManager
         IF _diagnosticsBufferIndex > LimitConstants#DIAG_BUFFER_UPPER_LIM THEN
           _diagnosticsBufferIndex := 0;
         END_IF;
+        tempDiagnosticsBufferIndexMode := _diagnosticsBufferIndex;
         // Check for defined unit modes
         tempRetVal := GetLocalDateTime(value => tempSysTime);
         SplitDateAndTime(
@@ -425,9 +426,9 @@ FUNCTION_BLOCK UnitModeStateManager
       //-----------------------------------------------
       // Message handling for mode manager: foot part
       //-----------------------------------------------
-      IF NOT _firstCycle THEN
-        IF diagnostics.buffer[_diagnosticsBufferIndex].message = Message#NO_MESSAGE THEN // ELSE: Unit mode wasn´t changed successfully
-          diagnostics.buffer[_diagnosticsBufferIndex].message := Message#MODE_CHANGED_SUCCESSFULLY;
+      IF NOT _firstCycle AND tempDiagnosticsBufferIndexMode >= 0 THEN
+        IF diagnostics.buffer[tempDiagnosticsBufferIndexMode].message = Message#NO_MESSAGE THEN // ELSE: Unit mode wasn´t changed successfully
+          diagnostics.buffer[tempDiagnosticsBufferIndexMode].message := Message#MODE_CHANGED_SUCCESSFULLY;
           _unitModeChangeNotAllowed := FALSE;
         END_IF;
       END_IF;

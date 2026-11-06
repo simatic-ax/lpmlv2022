@@ -2,7 +2,7 @@
 
 ## Principle of operation
 
-This function allows the user to set the state configuration for every unit mode in the `UnitModeStateManager` and the `UnitModeStateManagerBool` easily. Of course, it is also possible to set the state configurations directly in the `UnitModeStateManager` configuration.
+This function allows the user to set the state configuration for every unit mode in the `UnitModeStateManager` easily. Of course, it is also possible to set the state configurations directly in the `UnitModeStateManager` configuration.
 
 With the function, the user has to set the associated inputs for the different states to "TRUE", e.g. "Held := TRUE" for disabling the state Held.
 

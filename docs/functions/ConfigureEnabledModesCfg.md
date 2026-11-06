@@ -2,7 +2,7 @@
 
 ## Principle of operation
 
-This function allows the user to set the unit mode configuration for `UnitModeStateManager` and the `UnitModeStateManagerBool` easily. Of course, it is also possible to set the unit mode configuration directly in the `UnitModeStateManager` configuration.
+This function allows the user to set the unit mode configuration for `UnitModeStateManager` easily. Of course, it is also possible to set the unit mode configuration directly in the `UnitModeStateManager` configuration.
 
 With the function, the user has to set the associated inputs for the different unit modes to “TRUE”, e.g. “MaintenanceMode := TRUE” for enabling the unit mode Maintenance.
 To write the unit mode configuration from the function output to the according “Unit Mode and State Manager”, the output `EnabledModesCfg` has to be assigned to the configuration of the corresponding `UnitModeStateManager`.
